@@ -6,6 +6,7 @@ import displaymanager.GameboardRender.viewPoint;
 
 import jobs.Warrior;
 import entity.Job.jobList;
+import entity.Range.RangeType;
 
 public class Character {
 	public enum Race {
@@ -18,10 +19,6 @@ public class Character {
 
 	public enum CharState {
 		Walking, Standing, Hitting, Casting, TakingDmg, Wounded, Dead
-	}
-
-	public enum RangeType {
-		Cross, Circle
 	}
 
 	private Race race;
@@ -61,8 +58,7 @@ public class Character {
 	private int level;
 	private int experience;
 
-	private RangeType rangeType;
-	private int range;
+	private Range range;
 
 	private String name;
 
@@ -88,8 +84,9 @@ public class Character {
 		this.experience = 0;
 		this.currentAnimation = null;
 		this.setState(CharState.Standing);
-		this.setRange(1);
-		this.setRangeType(RangeType.Cross);
+		this.range = new Range();
+		this.range.setRange(1);
+		this.range.setRangeType(RangeType.Cross);
 		setLastState(this.getState());
 		jobs = new Job[jobList.values().length];
 		jobs[0] = new Warrior();
@@ -165,8 +162,9 @@ public class Character {
 		this.level = Integer.valueOf(GetXMLElement(XMLString, "LVL"));
 		this.experience = Integer.valueOf(GetXMLElement(XMLString, "XP"));
 
-		this.setRange(Integer.valueOf(GetXMLElement(XMLString, "RAN")));
-		this.setRangeType(RangeType.valueOf(GetXMLElement(XMLString, "RAT")));
+		this.range = new Range();
+		this.range.setRange(Integer.valueOf(GetXMLElement(XMLString, "RAN")));
+		this.range.setRangeType(RangeType.valueOf(GetXMLElement(XMLString, "RAT")));
 
 		maxLifePoints = Integer.valueOf(GetXMLElement(XMLString, "HP"));
 		maxManaPoints = Integer.valueOf(GetXMLElement(XMLString, "MP"));
@@ -316,11 +314,11 @@ public class Character {
 		s += "</AJ>";
 
 		s += "<RAN>";
-		s += this.getRange();
+		s += this.range.getRange();
 		s += "</RAN>";
 
 		s += "<RAT>";
-		s += this.getRangeType();
+		s += this.range.getRangeType();
 		s += "</RAT>";
 		s += "\n";
 
@@ -608,22 +606,6 @@ public class Character {
 
 	public void setIsMoving(boolean isMoving) {
 		this.isMoving = isMoving;
-	}
-
-	public int getRange() {
-		return range;
-	}
-
-	public void setRange(int range) {
-		this.range = range;
-	}
-
-	public RangeType getRangeType() {
-		return rangeType;
-	}
-
-	public void setRangeType(RangeType rangeType) {
-		this.rangeType = rangeType;
 	}
 
 	public CharState getLastState() {
