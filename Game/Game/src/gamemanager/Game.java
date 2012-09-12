@@ -14,10 +14,12 @@ import jobs.Warrior;
 import inputmanager.InputManager;
 import inputmanager.InputManager.actions;
 import entity.Job.jobList;
+import entity.Range.RangeType;
 import displaymanager.DisplayManager;
 import displaymanager.GameboardRender.viewPoint;
 import entity.Map;
 import entity.Player;
+import entity.Range;
 import entity.Tile;
 import entity.TileTexture;
 import entity.Character;
@@ -265,7 +267,7 @@ public class Game {
 				dm.getHUD().getContextMenu().setShow(false);
 				break;
 			case 1:
-				LightUpPossibleAttackR(currentChar.getCurrentTileX(), currentChar.getCurrentTileY(), currentChar.getRange(), currentChar.getRangeType());
+				LightUpPossibleAttackR(currentChar.getCurrentTileX(), currentChar.getCurrentTileY(), currentChar.getRange());
 				state = GameStatus.TargetSelection;
 				dm.getHUD().getContextMenu().setShow(false);
 				break;
@@ -363,23 +365,24 @@ public class Game {
 		}
 	}
 
-	public void LightUpPossibleAttackR(int X, int Y, int range, RangeType rangeType) {
-		if (range <= 0) {
+	public void LightUpPossibleAttackR(int X, int Y, Range range) {
+		if (range.getRange() <= 0) {
 			return;
 		} else {
-			switch (rangeType) {
+			switch (range.getRangeType()) {
 			case Cross:
-				for (int i = 1; i <= range; i++) {
-					if (X + i < map.getLength()) {
+				for (int i = 1; i <= range.getRange(); i++) {
+					if (X + i <= map.getLength()) {
 						map.getTile(X + i, Y).setHighlightedRed(true);
 					}
-					if (Y + i < map.getWidth()) {
-						map.getTile(X, Y - i).setHighlightedRed(true);
-					}
-					if (X - i > 0) {
+					if (X - i >= 0) {
 						map.getTile(X - i, Y).setHighlightedRed(true);
 					}
-					if (Y - i > 0) {
+					
+					if (Y + i <= map.getWidth()) {
+						map.getTile(X,Y + i).setHighlightedRed(true);
+					}
+					if (Y - i >= 0) {
 						map.getTile(X, Y - i).setHighlightedRed(true);
 					}
 				}
@@ -620,6 +623,7 @@ public class Game {
 		Character c2 = new Character(Race.Dwarf, Gender.Male);
 		c2.setName("bobix2");
 		Character c3 = new Character(Race.Elve, Gender.Male);
+		c3.setRange(5, RangeType.Cross);
 		c3.setName("bobixou1");
 		Character c4 = new Character(Race.Human, Gender.Male);
 		c4.setName("bobixou2");
@@ -630,24 +634,22 @@ public class Game {
 
 		c3.setLifePoints(10);
 
-		map.getTile(0, 0).setDeploymentZone(1);
-		map.getTile(0, 1).setHeight(4);
-		map.getTile(0, 1).setDeploymentZone(1);
-		map.getTile(0, 2).setHeight(5);
-		map.getTile(0, 2).setDeploymentZone(1);
-		map.getTile(0, 3).setDeploymentZone(1);
+		map.getTile(5, 2).setDeploymentZone(1);
+		map.getTile(5, 3).setDeploymentZone(1);
+		map.getTile(5, 4).setDeploymentZone(1);
+		map.getTile(5, 5).setDeploymentZone(1);
 
 		map.getTile(2, 0).setDeploymentZone(2);
-		map.getTile(2, 0).setHeight(4);
 		map.getTile(2, 1).setDeploymentZone(2);
-		map.getTile(2, 1).setHeight(5);
 		map.getTile(2, 2).setDeploymentZone(2);
-		map.getTile(2, 2).setHeight(6);
 		map.getTile(2, 3).setDeploymentZone(2);
-		map.getTile(2, 3).setHeight(7);
-
-		map.getTile(3, 1).setHeight(2);
-		map.getTile(3, 2).setHeight(1);
+		/*
+		 * map.getTile(0, 1).setHeight(4); map.getTile(0, 2).setHeight(5);
+		 * map.getTile(2, 0).setHeight(4); map.getTile(2, 1).setHeight(5);
+		 * map.getTile(2, 2).setHeight(6); map.getTile(2, 3).setHeight(7);
+		 * 
+		 * map.getTile(3, 1).setHeight(2); map.getTile(3, 2).setHeight(1);
+		 */
 		Game g = new Game(1024, 768, map, 2);
 		g.setPlayer(0, p1);
 		g.setPlayer(1, p2);

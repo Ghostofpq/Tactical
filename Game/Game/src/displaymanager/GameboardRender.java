@@ -130,6 +130,10 @@ public class GameboardRender {
 						DrawHighlightG(demoMap.getTile(i, j));
 					}
 
+					if (demoMap.getTile(i, j).isHighlightedRed() && !demoMap.getTile(i, j).isHighlighted()) {
+						DrawHighlightR(demoMap.getTile(i, j));
+					}
+
 					if (demoMap.getTile(i, j).isHighlighted()) {
 						DrawHighlight(demoMap.getTile(i, j));
 					}
@@ -162,6 +166,9 @@ public class GameboardRender {
 					}
 					if (demoMap.getTile(i, j).isHighlightedGreen() && !demoMap.getTile(i, j).isHighlighted()) {
 						DrawHighlightG(demoMap.getTile(i, j));
+					}
+					if (demoMap.getTile(i, j).isHighlightedRed() && !demoMap.getTile(i, j).isHighlighted()) {
+						DrawHighlightR(demoMap.getTile(i, j));
 					}
 
 					if (demoMap.getTile(i, j).isHighlighted()) {
@@ -197,7 +204,9 @@ public class GameboardRender {
 					if (demoMap.getTile(i, j).isHighlightedGreen() && !demoMap.getTile(i, j).isHighlighted()) {
 						DrawHighlightG(demoMap.getTile(i, j));
 					}
-
+					if (demoMap.getTile(i, j).isHighlightedRed() && !demoMap.getTile(i, j).isHighlighted()) {
+						DrawHighlightR(demoMap.getTile(i, j));
+					}
 					if (demoMap.getTile(i, j).isHighlighted()) {
 						DrawHighlight(demoMap.getTile(i, j));
 					}
@@ -229,12 +238,14 @@ public class GameboardRender {
 						DrawTheLinkSE(demoMap.getTile(i, j), new Tile(i, j + 1, 0));
 					}
 
-					if (demoMap.getTile(i, j).isHighlightedRed()) {
-						DrawHighlightR(demoMap.getTile(i, j));
-					} else if (demoMap.getTile(i, j).isHighlighted()) {
-						DrawHighlight(demoMap.getTile(i, j));
-					} else if (demoMap.getTile(i, j).isHighlightedGreen()) {
+					if (demoMap.getTile(i, j).isHighlightedGreen() && !demoMap.getTile(i, j).isHighlighted()) {
 						DrawHighlightG(demoMap.getTile(i, j));
+					}
+					if (demoMap.getTile(i, j).isHighlightedRed() && !demoMap.getTile(i, j).isHighlighted()) {
+						DrawHighlightR(demoMap.getTile(i, j));
+					}
+					if (demoMap.getTile(i, j).isHighlighted()) {
+						DrawHighlight(demoMap.getTile(i, j));
 					}
 
 					for (Character c : charsToDRaw) {

@@ -616,6 +616,15 @@ public class Character {
 		this.lastState = lastState;
 	}
 
+	public Range getRange() {
+		return this.range;
+	}
+
+	public void setRange(int range, RangeType type) {
+		this.range.setRange(range);
+		this.range.setRangeType(type);
+	}
+
 	public static void main(String[] argv) {
 		Character c1 = new Character(Race.Human, Gender.Female);
 		String save = c1.toXMLString();
