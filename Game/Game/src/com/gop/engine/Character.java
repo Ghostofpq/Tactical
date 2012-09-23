@@ -74,6 +74,7 @@ public class Character {
 	private boolean isDead;
 	private boolean isPlaced;
 	private boolean hasMoved;
+	private boolean hasAttacked;
 
 	public Character(Race race, Gender gender) {
 		this.setRace(race);
@@ -96,6 +97,7 @@ public class Character {
 		name = "noname";
 		isPlaced = false;
 		setHasMoved(false);
+		setHasAttacked(false);
 		isMoving = false;
 		isDead = false;
 		switch (race) {
@@ -218,6 +220,7 @@ public class Character {
 	public void TurnIsOver() {
 		setReadyToPlay(false);
 		setHasMoved(false);
+		setHasAttacked(false);
 		hourglass = 100;
 	}
 
@@ -641,6 +644,14 @@ public class Character {
 		String save2 = c2.toXMLString();
 		System.out.println(save2);
 
+	}
+
+	public boolean isHasAttacked() {
+		return hasAttacked;
+	}
+
+	public void setHasAttacked(boolean hasAttacked) {
+		this.hasAttacked = hasAttacked;
 	}
 
 }

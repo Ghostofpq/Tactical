@@ -3,12 +3,11 @@ package com.gop.engine;
 import org.lwjgl.Sys;
 
 import com.gop.engine.Character.*;
+import com.gop.engine.capacities.BasicAttack;
 import com.gop.engine.InputManager.actions;
 import com.gop.engine.Range.RangeType;
 import com.gop.graphics.DisplayManager;
 import com.gop.graphics.GameboardRender.viewPoint;
-
-
 
 public class Game {
 
@@ -124,6 +123,9 @@ public class Game {
 			dm.getHUD().getContextMenu().setShow(true);
 			if (currentChar.hasMoved()) {
 				dm.getHUD().getContextMenu().DisableOption(0);
+			}
+			if (currentChar.isHasAttacked()) {
+				dm.getHUD().getContextMenu().DisableOption(1);
 			}
 			break;
 		}
@@ -391,6 +393,13 @@ public class Game {
 		}
 	}
 
+	private void Attack() {
+		BasicAttack.Activate(currentChar, getCharOnTile(cursorX, cursorY));
+		currentChar.setHasAttacked(true);
+		map.CleanLightUpZones();
+		state = GameStatus.InCharMenu;
+	}
+
 	private void manageKeyInput(actions act) {
 		if (!act.equals(actions.none)) {
 			switch (act) {
@@ -458,6 +467,7 @@ public class Game {
 					Move();
 					break;
 				case TargetSelection:
+					Attack();
 					break;
 				case ExploringMap:
 					break;
