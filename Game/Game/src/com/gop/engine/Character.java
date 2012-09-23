@@ -6,8 +6,6 @@ import com.gop.engine.Job.jobList;
 import com.gop.engine.Range.RangeType;
 import com.gop.graphics.GameboardRender.viewPoint;
 
-
-
 public class Character {
 	public enum Race {
 		Human, Dwarf, Elve
@@ -73,7 +71,7 @@ public class Character {
 
 	private int spriteSpeed;
 	private boolean isMoving;
-
+	private boolean isDead;
 	private boolean isPlaced;
 	private boolean hasMoved;
 
@@ -99,6 +97,7 @@ public class Character {
 		isPlaced = false;
 		setHasMoved(false);
 		isMoving = false;
+		isDead = false;
 		switch (race) {
 		case Human:
 			maxLifePoints = 50;
@@ -223,16 +222,21 @@ public class Character {
 	}
 
 	public void Update(float GameTimeLapse, Map map) {
-		if (currentAnimation != null) {
-			this.currentAnimation.Update(GameTimeLapse);
-		}
-		if (isMoving) {
-			if (tileToGoX != currentTileX || tileToGoY != currentTileY) {
-				setCurrentTileX(tileToGoX);
-				setCurrentTileY(tileToGoY);
-				posZ = map.getTile(currentTileX, currentTileY).getHeight();
-			} else {
-				isMoving = false;
+		if (!isDead) {
+			if (currentAnimation != null) {
+				this.currentAnimation.Update(GameTimeLapse);
+			}
+			if (isMoving) {
+				if (tileToGoX != currentTileX || tileToGoY != currentTileY) {
+					setCurrentTileX(tileToGoX);
+					setCurrentTileY(tileToGoY);
+					posZ = map.getTile(currentTileX, currentTileY).getHeight();
+				} else {
+					isMoving = false;
+				}
+			}
+			if (lifePoints == 0) {
+				isDead = true;
 			}
 		}
 	}
@@ -371,7 +375,11 @@ public class Character {
 	}
 
 	public void setLifePoints(int lifePoints) {
-		this.lifePoints = lifePoints;
+		if (lifePoints > 0) {
+			this.lifePoints = lifePoints;
+		} else {
+			this.lifePoints = 0;
+		}
 	}
 
 	public int getManaPoints() {
