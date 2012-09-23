@@ -1,4 +1,4 @@
-package com.gop.engine;
+package com.gop.engine.character.capacities;
 
 public class Range {
 

@@ -1,7 +1,6 @@
-package com.gop.engine.capacities;
+package com.gop.engine.character.capacities;
 
-import com.gop.engine.Character;
-import com.gop.engine.Range;
+import com.gop.engine.character.Character;
 
 public abstract class Capacity {
 

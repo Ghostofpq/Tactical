@@ -1,12 +1,12 @@
-package com.gop.engine;
+package com.gop.graphics;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import com.gop.engine.Character.*;
-import com.gop.engine.Job.jobList;
+import com.gop.engine.character.Character.*;
+import com.gop.engine.character.job.Job.jobList;
 import com.gop.graphics.GameboardRender.viewPoint;
 
 public class CharAnimation extends Animation {

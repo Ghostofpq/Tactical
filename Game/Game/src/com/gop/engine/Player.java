@@ -1,5 +1,7 @@
 package com.gop.engine;
 
+import com.gop.engine.character.Character;
+
 public class Player {
 	private Character[] chars;
 	private String name;

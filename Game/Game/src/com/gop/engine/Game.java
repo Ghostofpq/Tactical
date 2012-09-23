@@ -2,10 +2,12 @@ package com.gop.engine;
 
 import org.lwjgl.Sys;
 
-import com.gop.engine.Character.*;
-import com.gop.engine.capacities.BasicAttack;
+import com.gop.engine.character.Character;
+import com.gop.engine.character.Character.*;
+import com.gop.engine.character.capacities.BasicAttack;
+import com.gop.engine.character.capacities.Range;
+import com.gop.engine.character.capacities.Range.RangeType;
 import com.gop.engine.InputManager.actions;
-import com.gop.engine.Range.RangeType;
 import com.gop.graphics.DisplayManager;
 import com.gop.graphics.GameboardRender.viewPoint;
 
@@ -124,7 +126,7 @@ public class Game {
 			if (currentChar.hasMoved()) {
 				dm.getHUD().getContextMenu().DisableOption(0);
 			}
-			if (currentChar.isHasAttacked()) {
+			if (currentChar.hasAttacked()) {
 				dm.getHUD().getContextMenu().DisableOption(1);
 			}
 			break;

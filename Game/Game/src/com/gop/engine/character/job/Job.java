@@ -1,4 +1,5 @@
-package com.gop.engine;
+package com.gop.engine.character.job;
+
 
 public class Job {
 	public enum jobList {

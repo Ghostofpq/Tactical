@@ -1,4 +1,4 @@
-package com.gop.engine;
+package com.gop.graphics;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,7 +8,6 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import com.gop.engine.Tile.textureType;
-
 
 public class TileTexture {
 	public String path = "content/textures/";

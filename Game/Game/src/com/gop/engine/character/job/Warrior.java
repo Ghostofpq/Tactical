@@ -1,4 +1,6 @@
-package com.gop.engine;
+package com.gop.engine.character.job;
+
+import com.gop.engine.character.Character;
 
 
 public class Warrior extends Job {

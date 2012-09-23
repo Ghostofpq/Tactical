@@ -3,6 +3,7 @@ package com.gop.engine;
 import java.util.ArrayList;
 
 import com.gop.engine.Tile.textureType;
+import com.gop.graphics.TileTexture;
 
 
 public class Map {

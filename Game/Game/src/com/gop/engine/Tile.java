@@ -2,6 +2,9 @@ package com.gop.engine;
 
 import org.newdawn.slick.opengl.Texture;
 
+import com.gop.engine.character.Character;
+import com.gop.graphics.TileTexture;
+
 public class Tile {
 
 	public enum textureType {

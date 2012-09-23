@@ -1,9 +1,15 @@
-package com.gop.engine;
+package com.gop.engine.character;
 
 import org.newdawn.slick.opengl.Texture;
 
-import com.gop.engine.Job.jobList;
-import com.gop.engine.Range.RangeType;
+import com.gop.engine.Map;
+import com.gop.engine.character.capacities.Range;
+import com.gop.engine.character.capacities.Range.RangeType;
+import com.gop.engine.character.job.Job;
+import com.gop.engine.character.job.Warrior;
+import com.gop.engine.character.job.Job.jobList;
+import com.gop.graphics.Animation;
+import com.gop.graphics.CharAnimationBible;
 import com.gop.graphics.GameboardRender.viewPoint;
 
 public class Character {
@@ -646,7 +652,7 @@ public class Character {
 
 	}
 
-	public boolean isHasAttacked() {
+	public boolean hasAttacked() {
 		return hasAttacked;
 	}
 

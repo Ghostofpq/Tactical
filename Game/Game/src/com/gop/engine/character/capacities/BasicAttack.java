@@ -1,8 +1,9 @@
-package com.gop.engine.capacities;
+package com.gop.engine.character.capacities;
 
 import org.newdawn.slick.util.Log;
 import java.lang.Math;
-import com.gop.engine.Character;
+
+import com.gop.engine.character.Character;
 
 public class BasicAttack extends Capacity {
 
@@ -12,7 +13,7 @@ public class BasicAttack extends Capacity {
 		int AD = activator.getAttackPower();
 		int arm = target.getArmor() - activator.getArmorPenetration();
 		float dmgRed = ((float) arm / ((float) arm + 100));
-		float totalDmg = AD - (AD * dmgRed);
+		float totalDmg = ((float) AD - ((float) AD * dmgRed));
 		Log.debug("======Attack======");
 		Log.debug("AD : " + AD);
 		Log.debug("arm : " + arm);

@@ -10,10 +10,9 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import com.gop.engine.Character;
 import com.gop.engine.Map;
 import com.gop.engine.Tile;
-import com.gop.engine.TileTexture;
+import com.gop.engine.character.Character;
 
 
 public class GameboardRender {

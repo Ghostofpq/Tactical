@@ -4,7 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.opengl.Texture;
 
-import com.gop.engine.Character;
+import com.gop.engine.character.Character;
 
 
 public class CharDescRender {

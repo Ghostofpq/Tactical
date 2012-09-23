@@ -8,7 +8,8 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
-import com.gop.engine.Character;
+
+import com.gop.engine.character.Character;
 
 
 public class HUD {
