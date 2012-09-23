@@ -37,8 +37,7 @@ public class Game {
 	int charIndex;
 	Character currentChar;
 
-	int cursorX;
-	int cursorY;
+	Cursor cursor;
 
 	boolean quit;
 
@@ -54,8 +53,6 @@ public class Game {
 		dm = new DisplayManager(width, height, map);
 		this.dm.Init();
 		this.im = new InputManager();
-		this.cursorX = 0;
-		this.cursorY = 0;
 		this.quit = false;
 		this.map.getTile(0, 0).setHighlighted(true);
 		this.state = GameStatus.PlacingBeforeBattle;
@@ -66,6 +63,7 @@ public class Game {
 		if (nbPlayers == 0) {
 			this.state = GameStatus.ExploringMap;
 		}
+		cursor = new Cursor(map, dm);
 	}
 
 	private void UpdateLogic() {
@@ -155,8 +153,8 @@ public class Game {
 		for (Player p : players) {
 			for (Character c : p.getChars()) {
 				if (c.isReadyToPlay()) {
-					cursorX = c.getCurrentTileX();
-					cursorY = c.getCurrentTileY();
+					cursor.focusOn(c.getCurrentTileX(), c.getCurrentTileY());
+
 					currentPlayer = p;
 					currentChar = c;
 					this.dm.getHUD().SetCurrentChar(currentChar);
@@ -208,11 +206,11 @@ public class Game {
 	}
 
 	private void PlaceChar() {
-		if (map.getTile(cursorX, cursorY).getDeploymentZone() == this.indexPlayer + 1) {
-			if (!isTileOccupied(cursorX, cursorY)) {
-				currentChar.setCurrentTileX(cursorX);
-				currentChar.setCurrentTileY(cursorY);
-				currentChar.setHeight(map.getTile(cursorX, cursorY).getHeight());
+		if (map.getTile(cursor.getposX(), cursor.getposY()).getDeploymentZone() == this.indexPlayer + 1) {
+			if (!isTileOccupied(cursor.getposX(), cursor.getposY())) {
+				currentChar.setCurrentTileX(cursor.getposX());
+				currentChar.setCurrentTileY(cursor.getposY());
+				currentChar.setHeight(map.getTile(cursor.getposX(), cursor.getposY()).getHeight());
 				charPlaced = true;
 				currentChar.setPlaced(true);
 				dm.getGameBoard().getCharsToDRaw().add(players[this.indexPlayer].getChars()[indexChar]);
@@ -384,10 +382,10 @@ public class Game {
 	}
 
 	private void Move() {
-		if (map.getTile(cursorX, cursorY).isHighlightedGreen() && !isTileOccupied(cursorX, cursorY)) {
+		if (map.getTile(cursor.getposX(), cursor.getposY()).isHighlightedGreen() && !isTileOccupied(cursor.getposX(), cursor.getposY())) {
 			map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(false);
-			currentChar.setTileToGoX(cursorX);
-			currentChar.setTileToGoY(cursorY);
+			currentChar.setTileToGoX(cursor.getposX());
+			currentChar.setTileToGoY(cursor.getposY());
 			currentChar.setIsMoving(true);
 			currentChar.setHasMoved(true);
 			map.CleanLightUpZones();
@@ -396,7 +394,7 @@ public class Game {
 	}
 
 	private void Attack() {
-		BasicAttack.Activate(currentChar, getCharOnTile(cursorX, cursorY));
+		BasicAttack.Activate(currentChar, getCharOnTile(cursor.getposX(), cursor.getposY()));
 		currentChar.setHasAttacked(true);
 		map.CleanLightUpZones();
 		state = GameStatus.InCharMenu;
@@ -423,7 +421,8 @@ public class Game {
 
 			case UP:
 				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
-					goUp();
+					cursor.goUp();
+					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
 					dm.getHUD().getContextMenu().Previous();
 				}
@@ -431,7 +430,8 @@ public class Game {
 
 			case DOWN:
 				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
-					goDown();
+					cursor.goDown();
+					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
 					dm.getHUD().getContextMenu().Next();
 				}
@@ -439,7 +439,8 @@ public class Game {
 
 			case LEFT:
 				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
-					goLeft();
+					cursor.goLeft();
+					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
 					dm.getHUD().getContextMenu().Previous();
 				}
@@ -447,7 +448,8 @@ public class Game {
 
 			case RIGHT:
 				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
-					goRigth();
+					cursor.goRigth();
+					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
 					dm.getHUD().getContextMenu().Next();
 				}
@@ -480,129 +482,14 @@ public class Game {
 
 	}
 
-	private void goUp() {
-		switch (dm.getGameBoard().getCurrentView()) {
-		case South:
-			if (cursorX > 0) {
-				cursorX--;
-			}
-			break;
-		case West:
-			if (cursorY < map.getWidth() - 1) {
-				cursorY++;
-			}
-			break;
-		case North:
-			if (cursorX < map.getLength() - 1) {
-				cursorX++;
-			}
-			break;
-		case East:
-			if (cursorY > 0) {
-				cursorY--;
-			}
-			break;
-		}
-		UpdateCursor();
-	}
-
-	private void goDown() {
-		switch (dm.getGameBoard().getCurrentView()) {
-		case South:
-			if (cursorX < map.getLength() - 1) {
-				cursorX++;
-			}
-			break;
-		case West:
-			if (cursorY > 0) {
-				cursorY--;
-			}
-			break;
-		case North:
-			if (cursorX > 0) {
-				cursorX--;
-			}
-			break;
-		case East:
-			if (cursorY < map.getWidth() - 1) {
-				cursorY++;
-			}
-			break;
-		}
-		UpdateCursor();
-	}
-
-	private void goLeft() {
-		switch (dm.getGameBoard().getCurrentView()) {
-		case South:
-			if (cursorY > 0) {
-				cursorY--;
-			}
-			break;
-		case West:
-			if (cursorX > 0) {
-				cursorX--;
-			}
-			break;
-		case North:
-			if (cursorY < map.getWidth() - 1) {
-				cursorY++;
-			}
-			break;
-		case East:
-			if (cursorX < map.getLength() - 1) {
-				cursorX++;
-			}
-			break;
-		}
-		UpdateCursor();
-	}
-
-	private void goRigth() {
-		switch (dm.getGameBoard().getCurrentView()) {
-		case South:
-			if (cursorY < map.getWidth() - 1) {
-				cursorY++;
-			}
-			break;
-		case West:
-			if (cursorX < map.getLength() - 1) {
-				cursorX++;
-			}
-			break;
-		case North:
-			if (cursorY > 0) {
-				cursorY--;
-			}
-			break;
-		case East:
-			if (cursorX > 0) {
-				cursorX--;
-			}
-			break;
-		}
-		UpdateCursor();
-	}
-
 	// TODO: trop bourrin p-e non?
 	public void UpdateCursor() {
-		for (int i = 0; i < map.getLength(); i++) {
-			for (int j = 0; j < map.getWidth(); j++) {
-				if (i == cursorX && j == cursorY) {
-					map.getTile(i, j).setHighlighted(true);
-				} else if (currentChar != null) {
-					if (i == currentChar.getPosX() && j == currentChar.getPosY() && currentChar.isPlaced()) {
-						map.getTile(i, j).setHighlighted(true);
-					} else {
-						map.getTile(i, j).setHighlighted(false);
-					}
-				} else {
-					map.getTile(i, j).setHighlighted(false);
-				}
-				dm.getGameBoard().RequestFocusOn(cursorX, cursorY, map.getTile(cursorX, cursorY).getHeight());
-				dm.getHUD().SetCurrentTarget(getCharOnTile(cursorX, cursorY));
-			}
+		if (currentChar.getCurrentTileX() > 0 && currentChar.getCurrentTileY() > 0) {
+			map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(true);
+
 		}
+		dm.getGameBoard().RequestFocusOn(cursor.getposX(), cursor.getposY(), map.getTile(cursor.getposX(), cursor.getposY()).getHeight());
+		dm.getHUD().SetCurrentTarget(getCharOnTile(cursor.getposX(), cursor.getposY()));
 	}
 
 	public static void main(String[] argv) {
