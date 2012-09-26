@@ -234,10 +234,12 @@ public class Game {
 			if (!isTileOccupied(cursor.getposX(), cursor.getposY())) {
 				currentChar.setCurrentTileX(cursor.getposX());
 				currentChar.setCurrentTileY(cursor.getposY());
-				currentChar.setHeight(map.getTile(cursor.getposX(), cursor.getposY()).getHeight());
+				currentChar.setHeight(map.getTile(cursor.getposX(),
+						cursor.getposY()).getHeight());
 				charPlaced = true;
 				currentChar.setPlaced(true);
-				dm.getGameBoard().getCharsToDRaw().add(players[this.indexPlayer].getChars()[indexChar]);
+				dm.getGameBoard().getCharsToDRaw()
+						.add(players[this.indexPlayer].getChars()[indexChar]);
 			}
 		}
 	}
@@ -272,13 +274,16 @@ public class Game {
 				if (currentChar.hasMoved()) {
 
 				} else {
-					LightUpPossibleMovementR(currentChar.getCurrentTileX(), currentChar.getCurrentTileY(), currentChar.getMovement());
+					LightUpPossibleMovementR(currentChar.getCurrentTileX(),
+							currentChar.getCurrentTileY(),
+							currentChar.getMovement());
 					state = GameStatus.MoveSelection;
 				}
 				dm.getHUD().getContextMenu().setShow(false);
 				break;
 			case 1:
-				LightUpPossibleAttackR(currentChar.getCurrentTileX(), currentChar.getCurrentTileY(), currentChar.getRange());
+				LightUpPossibleAttackR(currentChar.getCurrentTileX(),
+						currentChar.getCurrentTileY(), currentChar.getRange());
 				state = GameStatus.TargetSelection;
 				dm.getHUD().getContextMenu().setShow(false);
 				break;
@@ -286,6 +291,8 @@ public class Game {
 				break;
 			case 3:
 				currentChar.TurnIsOver();
+				map.getTile(currentChar.getCurrentTileX(),
+						currentChar.getCurrentTileY()).setHighlighted(false);
 				state = GameStatus.Pending;
 				map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(false);
 				dm.getHUD().getContextMenu().setShow(false);
@@ -302,10 +309,13 @@ public class Game {
 			int zEcart;
 
 			if (X + 1 < map.getLength()) {
-				if (map.getTile(X + 1, Y).getHeight() > map.getTile(X, Y).getHeight()) {
-					zEcart = map.getTile(X + 1, Y).getHeight() - map.getTile(X, Y).getHeight();
+				if (map.getTile(X + 1, Y).getHeight() > map.getTile(X, Y)
+						.getHeight()) {
+					zEcart = map.getTile(X + 1, Y).getHeight()
+							- map.getTile(X, Y).getHeight();
 				} else {
-					zEcart = map.getTile(X, Y).getHeight() - map.getTile(X + 1, Y).getHeight();
+					zEcart = map.getTile(X, Y).getHeight()
+							- map.getTile(X + 1, Y).getHeight();
 				}
 				if (zEcart >= 2) {
 					if (!isTileOccupied(X + 1, Y)) {
@@ -320,10 +330,13 @@ public class Game {
 				}
 			}
 			if (X > 0) {
-				if (map.getTile(X - 1, Y).getHeight() > map.getTile(X, Y).getHeight()) {
-					zEcart = map.getTile(X - 1, Y).getHeight() - map.getTile(X, Y).getHeight();
+				if (map.getTile(X - 1, Y).getHeight() > map.getTile(X, Y)
+						.getHeight()) {
+					zEcart = map.getTile(X - 1, Y).getHeight()
+							- map.getTile(X, Y).getHeight();
 				} else {
-					zEcart = map.getTile(X, Y).getHeight() - map.getTile(X - 1, Y).getHeight();
+					zEcart = map.getTile(X, Y).getHeight()
+							- map.getTile(X - 1, Y).getHeight();
 				}
 				if (zEcart >= 2) {
 					if (!isTileOccupied(X - 1, Y)) {
@@ -338,10 +351,13 @@ public class Game {
 				}
 			}
 			if (Y + 1 < map.getWidth()) {
-				if (map.getTile(X, Y + 1).getHeight() > map.getTile(X, Y).getHeight()) {
-					zEcart = map.getTile(X, Y + 1).getHeight() - map.getTile(X, Y).getHeight();
+				if (map.getTile(X, Y + 1).getHeight() > map.getTile(X, Y)
+						.getHeight()) {
+					zEcart = map.getTile(X, Y + 1).getHeight()
+							- map.getTile(X, Y).getHeight();
 				} else {
-					zEcart = map.getTile(X, Y).getHeight() - map.getTile(X, Y + 1).getHeight();
+					zEcart = map.getTile(X, Y).getHeight()
+							- map.getTile(X, Y + 1).getHeight();
 				}
 				if (zEcart >= 2) {
 					if (!isTileOccupied(X, Y + 1)) {
@@ -356,10 +372,13 @@ public class Game {
 				}
 			}
 			if (Y > 0) {
-				if (map.getTile(X, Y - 1).getHeight() > map.getTile(X, Y).getHeight()) {
-					zEcart = map.getTile(X, Y - 1).getHeight() - map.getTile(X, Y).getHeight();
+				if (map.getTile(X, Y - 1).getHeight() > map.getTile(X, Y)
+						.getHeight()) {
+					zEcart = map.getTile(X, Y - 1).getHeight()
+							- map.getTile(X, Y).getHeight();
 				} else {
-					zEcart = map.getTile(X, Y).getHeight() - map.getTile(X, Y - 1).getHeight();
+					zEcart = map.getTile(X, Y).getHeight()
+							- map.getTile(X, Y - 1).getHeight();
 				}
 				if (zEcart >= 2) {
 					if (!isTileOccupied(X, Y - 1)) {
@@ -407,8 +426,11 @@ public class Game {
 	}
 
 	private void Move() {
-		if (map.getTile(cursor.getposX(), cursor.getposY()).isHighlightedGreen() && !isTileOccupied(cursor.getposX(), cursor.getposY())) {
-			map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(false);
+		if (map.getTile(cursor.getposX(), cursor.getposY())
+				.isHighlightedGreen()
+				&& !isTileOccupied(cursor.getposX(), cursor.getposY())) {
+			map.getTile(currentChar.getCurrentTileX(),
+					currentChar.getCurrentTileY()).setHighlighted(false);
 			currentChar.setTileToGoX(cursor.getposX());
 			currentChar.setTileToGoY(cursor.getposY());
 			currentChar.setIsMoving(true);
@@ -448,7 +470,10 @@ public class Game {
 				break;
 
 			case UP:
-				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
+				if (state == GameStatus.PlacingBeforeBattle
+						|| state == GameStatus.MoveSelection
+						|| state == GameStatus.TargetSelection
+						|| state == GameStatus.ExploringMap) {
 					cursor.goUp();
 					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
@@ -457,7 +482,10 @@ public class Game {
 				break;
 
 			case DOWN:
-				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
+				if (state == GameStatus.PlacingBeforeBattle
+						|| state == GameStatus.MoveSelection
+						|| state == GameStatus.TargetSelection
+						|| state == GameStatus.ExploringMap) {
 					cursor.goDown();
 					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
@@ -466,7 +494,10 @@ public class Game {
 				break;
 
 			case LEFT:
-				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
+				if (state == GameStatus.PlacingBeforeBattle
+						|| state == GameStatus.MoveSelection
+						|| state == GameStatus.TargetSelection
+						|| state == GameStatus.ExploringMap) {
 					cursor.goLeft();
 					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
@@ -475,7 +506,10 @@ public class Game {
 				break;
 
 			case RIGHT:
-				if (state == GameStatus.PlacingBeforeBattle || state == GameStatus.MoveSelection || state == GameStatus.TargetSelection || state == GameStatus.ExploringMap) {
+				if (state == GameStatus.PlacingBeforeBattle
+						|| state == GameStatus.MoveSelection
+						|| state == GameStatus.TargetSelection
+						|| state == GameStatus.ExploringMap) {
 					cursor.goRigth();
 					UpdateCursor();
 				} else if (state == GameStatus.InCharMenu) {
@@ -515,12 +549,16 @@ public class Game {
 	}
 
 	public void UpdateCursor() {
-		if (currentChar.getCurrentTileX() > 0 && currentChar.getCurrentTileY() > 0) {
-			map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(true);
+		if (currentChar.getCurrentTileX() > 0
+				&& currentChar.getCurrentTileY() > 0) {
+			map.getTile(currentChar.getCurrentTileX(),
+					currentChar.getCurrentTileY()).setHighlighted(true);
 
 		}
-		dm.getGameBoard().RequestFocusOn(cursor.getposX(), cursor.getposY(), map.getTile(cursor.getposX(), cursor.getposY()).getHeight());
-		dm.getHUD().SetCurrentTarget(getCharOnTile(cursor.getposX(), cursor.getposY()));
+		dm.getGameBoard().RequestFocusOn(cursor.getposX(), cursor.getposY(),
+				map.getTile(cursor.getposX(), cursor.getposY()).getHeight());
+		dm.getHUD().SetCurrentTarget(
+				getCharOnTile(cursor.getposX(), cursor.getposY()));
 	}
 
 	public static void main(String[] argv) {
