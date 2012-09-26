@@ -14,7 +14,6 @@ import com.gop.engine.Map;
 import com.gop.engine.Tile;
 import com.gop.engine.character.Character;
 
-
 public class GameboardRender {
 	private Map demoMap;
 	private float scale;
@@ -136,7 +135,8 @@ public class GameboardRender {
 
 					for (Character c : charsToDRaw) {
 						if (c.getCurrentTileX() == i && c.getCurrentTileY() == j) {
-							DrawChar(c);
+							if (!c.isDead())
+								DrawChar(c);
 						}
 					}
 				}

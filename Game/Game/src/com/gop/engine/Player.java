@@ -27,4 +27,13 @@ public class Player {
 		this.name = name;
 	}
 
+	public boolean hasLost() {
+		boolean checker = true;
+		for (Character c : getChars()) {
+			if (!c.isDead()) {
+				checker = false;
+			}
+		}
+		return checker;
+	}
 }

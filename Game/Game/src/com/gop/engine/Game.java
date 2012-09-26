@@ -1,6 +1,7 @@
 package com.gop.engine;
 
 import org.lwjgl.Sys;
+import org.newdawn.slick.util.Log;
 
 import com.gop.engine.character.Character;
 import com.gop.engine.character.Character.*;
@@ -179,12 +180,28 @@ public class Game {
 		return (Sys.getTime() * 1000) / timerTicksPerSecond;
 	}
 
+	private boolean gameHasEnded() {
+		boolean checker = true; // passe a false si il ya plusieurs players
+								// encore vivants
+		boolean checker2 = false; // passe a true au bout du 1er survivor
+		for (Player p : players) {
+			if (!p.hasLost()) {
+				if (!checker2) {
+					checker2 = true;
+				} else {
+					checker = false;
+				}
+			}
+		}
+		return checker;
+	}
+
 	public void run() {
 		if (this.nbPlayers != 0) {
 			initPlacingBeforeBattle();
 		}
 		actions act;
-		while (!dm.isRequestClose() && !quit) {
+		while (!dm.isRequestClose() && !quit && !gameHasEnded()) {
 
 			act = im.getInputs();
 			UpdateLogic();
@@ -203,6 +220,13 @@ public class Game {
 			dm.Render();
 		}
 		dm.Clean();
+		if (gameHasEnded()) {
+			for (Player p : players) {
+				if (!p.hasLost()) {
+					Log.debug("Player " + p.getName() + " has won!!!");
+				}
+			}
+		}
 	}
 
 	private void PlaceChar() {
@@ -263,6 +287,7 @@ public class Game {
 			case 3:
 				currentChar.TurnIsOver();
 				state = GameStatus.Pending;
+				map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(false);
 				dm.getHUD().getContextMenu().setShow(false);
 				break;
 			}
@@ -394,8 +419,11 @@ public class Game {
 	}
 
 	private void Attack() {
-		BasicAttack.Activate(currentChar, getCharOnTile(cursor.getposX(), cursor.getposY()));
+		Character target = getCharOnTile(cursor.getposX(), cursor.getposY());
+		BasicAttack.Activate(currentChar, target);
 		currentChar.setHasAttacked(true);
+		cursor.focusOn(currentChar.getCurrentTileX(), currentChar.getCurrentTileY());
+		UpdateCursor();
 		map.CleanLightUpZones();
 		state = GameStatus.InCharMenu;
 	}
@@ -475,6 +503,10 @@ public class Game {
 					break;
 				case ExploringMap:
 					break;
+				case Pending:
+					break;
+				default:
+					break;
 				}
 				break;
 			}
@@ -482,7 +514,6 @@ public class Game {
 
 	}
 
-	// TODO: trop bourrin p-e non?
 	public void UpdateCursor() {
 		if (currentChar.getCurrentTileX() > 0 && currentChar.getCurrentTileY() > 0) {
 			map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(true);

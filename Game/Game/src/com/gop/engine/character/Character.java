@@ -214,12 +214,14 @@ public class Character {
 	}
 
 	public void HourglassTick() {
-		hourglass -= initiative;
-		if (hourglass <= 0) {
-			hourglass = 0;
-			setReadyToPlay(true);
-			setHasMoved(false);
-			hourglass = 100;
+		if (!isDead()) {
+			hourglass -= initiative;
+			if (hourglass <= 0) {
+				hourglass = 0;
+				setReadyToPlay(true);
+				setHasMoved(false);
+				hourglass = 100;
+			}
 		}
 	}
 
@@ -246,6 +248,7 @@ public class Character {
 			}
 			if (lifePoints == 0) {
 				isDead = true;
+				TurnIsOver();
 			}
 		}
 	}
@@ -642,6 +645,22 @@ public class Character {
 		this.range.setRangeType(type);
 	}
 
+	public boolean hasAttacked() {
+		return hasAttacked;
+	}
+
+	public void setHasAttacked(boolean hasAttacked) {
+		this.hasAttacked = hasAttacked;
+	}
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+	}
+
 	public static void main(String[] argv) {
 		Character c1 = new Character(Race.Human, Gender.Female);
 		String save = c1.toXMLString();
@@ -651,13 +670,4 @@ public class Character {
 		System.out.println(save2);
 
 	}
-
-	public boolean hasAttacked() {
-		return hasAttacked;
-	}
-
-	public void setHasAttacked(boolean hasAttacked) {
-		this.hasAttacked = hasAttacked;
-	}
-
 }
