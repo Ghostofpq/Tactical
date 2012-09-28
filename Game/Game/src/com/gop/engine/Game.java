@@ -294,7 +294,8 @@ public class Game {
 				map.getTile(currentChar.getCurrentTileX(),
 						currentChar.getCurrentTileY()).setHighlighted(false);
 				state = GameStatus.Pending;
-				map.getTile(currentChar.getCurrentTileX(), currentChar.getCurrentTileY()).setHighlighted(false);
+				map.getTile(currentChar.getCurrentTileX(),
+						currentChar.getCurrentTileY()).setHighlighted(false);
 				dm.getHUD().getContextMenu().setShow(false);
 				break;
 			}
@@ -403,14 +404,14 @@ public class Game {
 			switch (range.getRangeType()) {
 			case Cross:
 				for (int i = 1; i <= range.getRange(); i++) {
-					if (X + i <= map.getLength()) {
+					if (X + i < map.getLength()) {
 						map.getTile(X + i, Y).setHighlightedRed(true);
 					}
 					if (X - i >= 0) {
 						map.getTile(X - i, Y).setHighlightedRed(true);
 					}
 
-					if (Y + i <= map.getWidth()) {
+					if (Y + i < map.getWidth()) {
 						map.getTile(X, Y + i).setHighlightedRed(true);
 					}
 					if (Y - i >= 0) {
@@ -444,7 +445,8 @@ public class Game {
 		Character target = getCharOnTile(cursor.getposX(), cursor.getposY());
 		BasicAttack.Activate(currentChar, target);
 		currentChar.setHasAttacked(true);
-		cursor.focusOn(currentChar.getCurrentTileX(), currentChar.getCurrentTileY());
+		cursor.focusOn(currentChar.getCurrentTileX(),
+				currentChar.getCurrentTileY());
 		UpdateCursor();
 		map.CleanLightUpZones();
 		state = GameStatus.InCharMenu;
@@ -562,7 +564,7 @@ public class Game {
 	}
 
 	public static void main(String[] argv) {
-		Map map = new Map(25, 25, "lolilol");
+		Map map = new Map(10, 10, "lolilol");
 		;
 		/*
 		 * try { BufferedReader in = new BufferedReader(new
