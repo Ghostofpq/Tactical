@@ -7,10 +7,6 @@ import com.gop.graphics.TileTexture;
 
 public class Tile {
 
-	public enum textureType {
-		Grass, Earth, Sand, Stone, none
-	}
-
 	public enum tileType {
 		Walkable, Uncrossable, DifficultGround
 	}
@@ -26,7 +22,7 @@ public class Tile {
 	private boolean isHighlighted;
 	private boolean isHighlightedGreen;
 	private boolean isHighlightedRed;
-	private textureType texture;
+	private TextureType texture;
 	private tileType type;
 	private decorationType decoration;
 
@@ -45,7 +41,7 @@ public class Tile {
 		this.setPosX(0);
 		this.setPosY(0);
 		this.setHeight(3);
-		this.setTexture(textureType.Grass);
+		this.setTexture(TextureType.GRASS_TEXTURE);
 		this.setType(tileType.Walkable);
 		this.setDecoration(decorationType.None);
 		this.setHighlighted(false);
@@ -59,7 +55,7 @@ public class Tile {
 		this.setPosX(posX);
 		this.setPosY(posY);
 		this.setHeight(height);
-		this.setTexture(textureType.Grass);
+		this.setTexture(TextureType.GRASS_TEXTURE);
 		this.setType(tileType.Walkable);
 		this.setDecoration(decorationType.None);
 		this.setHighlighted(false);
@@ -68,7 +64,8 @@ public class Tile {
 		this.setDeploymentZone(0);
 	}
 
-	public Tile(int posX, int posY, int height, int heightTotal, textureType texture, tileType type, decorationType decoration) {
+	public Tile(int posX, int posY, int height, int heightTotal,
+			TextureType texture, tileType type, decorationType decoration) {
 		this.setPosX(posX);
 		this.setPosY(posY);
 		this.setHeight(height);
@@ -85,7 +82,7 @@ public class Tile {
 		int posX;
 		int posY;
 		int height;
-		textureType texture;
+		TextureType texture;
 		tileType type;
 		decorationType decoration;
 		int inDeployementZone;
@@ -93,7 +90,7 @@ public class Tile {
 		posX = Integer.parseInt(GetXMLElement(XMLString, "X"));
 		posY = Integer.parseInt(GetXMLElement(XMLString, "Y"));
 		height = Integer.parseInt(GetXMLElement(XMLString, "Z"));
-		texture = textureType.valueOf((GetXMLElement(XMLString, "Tx")));
+		texture = TextureType.valueOf((GetXMLElement(XMLString, "Tx")));
 		type = tileType.valueOf((GetXMLElement(XMLString, "Ty")));
 		decoration = decorationType.valueOf((GetXMLElement(XMLString, "Dc")));
 		inDeployementZone = Integer.parseInt(GetXMLElement(XMLString, "DZ"));
@@ -187,11 +184,11 @@ public class Tile {
 		this.height = height;
 	}
 
-	public textureType getTexture() {
+	public TextureType getTexture() {
 		return texture;
 	}
 
-	public void setTexture(textureType texture) {
+	public void setTexture(TextureType texture) {
 		this.texture = texture;
 	}
 
@@ -292,7 +289,8 @@ public class Tile {
 	}
 
 	public static void main(String[] argv) {
-		Tile t = new Tile(0, 5, 12, 12, textureType.Grass, tileType.DifficultGround, decorationType.Flowers3);
+		Tile t = new Tile(0, 5, 12, 12, TextureType.GRASS_TEXTURE,
+				tileType.DifficultGround, decorationType.Flowers3);
 		String s = t.toXMLString();
 		System.out.println(s);
 		Tile t2 = new Tile(s);

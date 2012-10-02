@@ -7,7 +7,7 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import com.gop.engine.Tile.textureType;
+import com.gop.engine.TextureType;
 
 public class TileTexture {
 	public String path = "content/textures/";
@@ -40,16 +40,16 @@ public class TileTexture {
 
 	}
 
-	public void LoadBundles(ArrayList<textureType> textures) {
-		for (textureType textureType : textures) {
+	public void LoadBundles(ArrayList<TextureType> textures) {
+		for (TextureType textureType : textures) {
 			LoadABundle(textureType);
 		}
 	}
 
-	public void LoadABundle(textureType type) {
+	public void LoadABundle(TextureType type) {
 		String tempPath = path + type.toString() + "/";
 		switch (type) {
-		case Grass:
+		case GRASS_TEXTURE:
 			try {
 				GrassMain = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "main.png"));
 				GrassSE = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "SE.png"));
@@ -60,7 +60,7 @@ public class TileTexture {
 				e.printStackTrace();
 			}
 			break;
-		case Stone:
+		case STONE_TEXTURE:
 			try {
 				StoneMain = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "main.png"));
 				StoneSE = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "SE.png"));
@@ -71,7 +71,7 @@ public class TileTexture {
 				e.printStackTrace();
 			}
 			break;
-		case Sand:
+		case SAND_TEXTURE:
 			try {
 				SandMain = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "main.png"));
 				SandSE = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "SE.png"));
@@ -82,7 +82,7 @@ public class TileTexture {
 				e.printStackTrace();
 			}
 			break;
-		case Earth:
+		case EARTH_TEXTURE:
 			try {
 				EarthMain = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "main.png"));
 				EarthSE = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(tempPath + "SE.png"));
@@ -98,10 +98,10 @@ public class TileTexture {
 		}
 	}
 
-	public Texture[] getBundle(textureType type) {
+	public Texture[] getBundle(TextureType type) {
 		Texture[] result = new Texture[5];
 		switch (type) {
-		case Grass:
+		case GRASS_TEXTURE:
 			result[0] = GrassMain;
 			result[1] = GrassSE;
 			result[2] = GrassSO;
@@ -109,7 +109,7 @@ public class TileTexture {
 			result[4] = GrassNE;
 
 			break;
-		case Stone:
+		case STONE_TEXTURE:
 			result[0] = StoneMain;
 			result[1] = StoneSE;
 			result[2] = StoneSO;
@@ -117,7 +117,7 @@ public class TileTexture {
 			result[4] = StoneNE;
 
 			break;
-		case Sand:
+		case SAND_TEXTURE:
 			result[0] = SandMain;
 			result[1] = SandSE;
 			result[2] = SandSO;
@@ -125,7 +125,7 @@ public class TileTexture {
 			result[4] = SandNE;
 
 			break;
-		case Earth:
+		case EARTH_TEXTURE:
 			result[0] = EarthMain;
 			result[1] = EarthSE;
 			result[2] = EarthSO;

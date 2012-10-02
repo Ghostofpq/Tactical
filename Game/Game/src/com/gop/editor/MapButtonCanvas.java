@@ -55,19 +55,19 @@ public class MapButtonCanvas extends JPanel {
 			for (int j = 0; j < map.getWidth(); j++) {
 				switch (map.getTile(i, j).getTexture()) {
 
-				case Grass:
+				case GRASS_TEXTURE:
 					buttonCanvas[i][j].setBackground(new Color(45, 125, 43));
 					break;
 
-				case Earth:
+				case EARTH_TEXTURE:
 					buttonCanvas[i][j].setBackground(new Color(128, 64, 0));
 					break;
 
-				case Sand:
+				case SAND_TEXTURE:
 					buttonCanvas[i][j].setBackground(new Color(255, 255, 128));
 					break;
 
-				case Stone:
+				case STONE_TEXTURE:
 					buttonCanvas[i][j].setBackground(new Color(128, 128, 128));
 					break;
 

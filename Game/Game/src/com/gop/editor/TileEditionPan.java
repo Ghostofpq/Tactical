@@ -16,9 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+import com.gop.engine.TextureType;
 import com.gop.engine.Tile;
-
 
 public class TileEditionPan extends JPanel {
 
@@ -126,7 +125,7 @@ public class TileEditionPan extends JPanel {
 	}
 
 	private void PrepareTexturePanel() {
-		Tile.textureType[] textureArray = Tile.textureType.values();
+		TextureType[] textureArray = TextureType.values();
 		for (int i = 0; i < textureArray.length; i++) {
 			textureCombo.addItem(textureArray[i]);
 		}
@@ -149,23 +148,27 @@ public class TileEditionPan extends JPanel {
 		for (int i = 0; i < decorationArray.length; i++) {
 			decorationCombo.addItem(decorationArray[i]);
 		}
-		decorationPanel.setBorder(BorderFactory.createTitledBorder("Decoration :"));
+		decorationPanel.setBorder(BorderFactory
+				.createTitledBorder("Decoration :"));
 		decorationPanel.add(decorationCombo);
 	}
 
 	private void PrepareDeployementPanel() {
-		deployementZoneNumPanel.setBorder(BorderFactory.createTitledBorder("Deployement Zone for player :"));
+		deployementZoneNumPanel.setBorder(BorderFactory
+				.createTitledBorder("Deployement Zone for player :"));
 		deployementZoneNumTextField.setEditable(false);
 		deployementZoneNumTextField.setText("0");
 
 		deployementZoneNumMinus.setFont(new Font("Arial", Font.BOLD, 10));
 		deployementZoneNumMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int deployementZoneNum = Integer.parseInt(deployementZoneNumTextField.getText());
+				int deployementZoneNum = Integer
+						.parseInt(deployementZoneNumTextField.getText());
 				if (deployementZoneNum > 1) {
 					deployementZoneNum--;
 				}
-				deployementZoneNumTextField.setText(String.valueOf(deployementZoneNum));
+				deployementZoneNumTextField.setText(String
+						.valueOf(deployementZoneNum));
 				SaveTile();
 			}
 		});
@@ -173,9 +176,11 @@ public class TileEditionPan extends JPanel {
 		deployementZoneNumPlus.setFont(new Font("Arial", Font.BOLD, 10));
 		deployementZoneNumPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int deployementZoneNum = Integer.parseInt(deployementZoneNumTextField.getText());
+				int deployementZoneNum = Integer
+						.parseInt(deployementZoneNumTextField.getText());
 				deployementZoneNum++;
-				deployementZoneNumTextField.setText(String.valueOf(deployementZoneNum));
+				deployementZoneNumTextField.setText(String
+						.valueOf(deployementZoneNum));
 				SaveTile();
 			}
 		});
@@ -215,7 +220,8 @@ public class TileEditionPan extends JPanel {
 		this.textureCombo.setSelectedItem(tile.getTexture());
 		this.typeCombo.setSelectedItem(tile.getType());
 		this.decorationCombo.setSelectedItem(tile.getDecoration());
-		this.deployementZoneNumTextField.setText(String.valueOf(tile.getDeploymentZone()));
+		this.deployementZoneNumTextField.setText(String.valueOf(tile
+				.getDeploymentZone()));
 		ActivateActions();
 
 		this.idLabel.setText(tile.getPosX() + "/" + tile.getPosY());
@@ -224,17 +230,30 @@ public class TileEditionPan extends JPanel {
 
 	public void SaveTile() {
 		if (currentTile != null) {
-			if (currentTile.getHeight() != this.sliderHeight.slide.getValue() || currentTile.getTexture() != Tile.textureType.valueOf(this.textureCombo.getSelectedItem().toString())
-					|| currentTile.getType() != Tile.tileType.valueOf(this.typeCombo.getSelectedItem().toString())
-					|| currentTile.getDecoration() != Tile.decorationType.valueOf(this.decorationCombo.getSelectedItem().toString())
-					|| currentTile.getDeploymentZone() != Integer.valueOf(deployementZoneNumTextField.getText())) {
+			if (currentTile.getHeight() != this.sliderHeight.slide.getValue()
+					|| currentTile.getTexture() != TextureType
+							.valueOf(this.textureCombo.getSelectedItem()
+									.toString())
+					|| currentTile.getType() != Tile.tileType
+							.valueOf(this.typeCombo.getSelectedItem()
+									.toString())
+					|| currentTile.getDecoration() != Tile.decorationType
+							.valueOf(this.decorationCombo.getSelectedItem()
+									.toString())
+					|| currentTile.getDeploymentZone() != Integer
+							.valueOf(deployementZoneNumTextField.getText())) {
 
 				currentTile.setHeight(this.sliderHeight.slide.getValue());
 
-				currentTile.setTexture(Tile.textureType.valueOf(this.textureCombo.getSelectedItem().toString()));
-				currentTile.setType(Tile.tileType.valueOf(this.typeCombo.getSelectedItem().toString()));
-				currentTile.setDecoration(Tile.decorationType.valueOf(this.decorationCombo.getSelectedItem().toString()));
-				currentTile.setDeploymentZone(Integer.valueOf(deployementZoneNumTextField.getText()));
+				currentTile.setTexture(TextureType.valueOf(this.textureCombo
+						.getSelectedItem().toString()));
+				currentTile.setType(Tile.tileType.valueOf(this.typeCombo
+						.getSelectedItem().toString()));
+				currentTile.setDecoration(Tile.decorationType
+						.valueOf(this.decorationCombo.getSelectedItem()
+								.toString()));
+				currentTile.setDeploymentZone(Integer
+						.valueOf(deployementZoneNumTextField.getText()));
 				containerFrame.updateCancas();
 			}
 		}
@@ -292,31 +311,33 @@ public class TileEditionPan extends JPanel {
 					break;
 
 				case 'q':
-					textureCombo.setSelectedItem(Tile.textureType.Grass);
+					textureCombo.setSelectedItem(TextureType.GRASS_TEXTURE);
 					SaveTile();
 					break;
 				case 's':
-					textureCombo.setSelectedItem(Tile.textureType.Earth);
+					textureCombo.setSelectedItem(TextureType.EARTH_TEXTURE);
 					SaveTile();
 					break;
 				case 'd':
-					textureCombo.setSelectedItem(Tile.textureType.Sand);
+					textureCombo.setSelectedItem(TextureType.SAND_TEXTURE);
 					SaveTile();
 					break;
 				case 'f':
-					textureCombo.setSelectedItem(Tile.textureType.Stone);
+					textureCombo.setSelectedItem(TextureType.STONE_TEXTURE);
 					SaveTile();
 					break;
 
 				case 'w':
 					if (sliderHeight.slide.getValue() > 0) {
-						sliderHeight.slide.setValue(sliderHeight.slide.getValue() - 1);
+						sliderHeight.slide.setValue(sliderHeight.slide
+								.getValue() - 1);
 					}
 					SaveTile();
 					break;
 				case 'x':
 					if (sliderHeight.slide.getValue() < 25) {
-						sliderHeight.slide.setValue(sliderHeight.slide.getValue() + 1);
+						sliderHeight.slide.setValue(sliderHeight.slide
+								.getValue() + 1);
 					}
 					SaveTile();
 					break;
@@ -327,45 +348,59 @@ public class TileEditionPan extends JPanel {
 					case 38:
 						SaveTile();
 						if (currentTile.getPosX() - 1 >= 0) {
-							LoadTile(containerFrame.getMap().getTile(currentTile.getPosX() - 1, currentTile.getPosY()));
+							LoadTile(containerFrame.getMap().getTile(
+									currentTile.getPosX() - 1,
+									currentTile.getPosY()));
 						}
 						if (isFocusable()) {
 							requestFocusInWindow();
 						}
-						containerFrame.setCanvasFocusOn(currentTile.getPosX(), currentTile.getPosY());
+						containerFrame.setCanvasFocusOn(currentTile.getPosX(),
+								currentTile.getPosY());
 						break;
 					// arrowleft
 					case 37:
 						SaveTile();
 						if (currentTile.getPosY() - 1 >= 0) {
-							LoadTile(containerFrame.getMap().getTile(currentTile.getPosX(), currentTile.getPosY() - 1));
+							LoadTile(containerFrame.getMap().getTile(
+									currentTile.getPosX(),
+									currentTile.getPosY() - 1));
 						}
 						if (isFocusable()) {
 							requestFocusInWindow();
 						}
-						containerFrame.setCanvasFocusOn(currentTile.getPosX(), currentTile.getPosY());
+						containerFrame.setCanvasFocusOn(currentTile.getPosX(),
+								currentTile.getPosY());
 						break;
 					// arrowrigth
 					case 39:
 						SaveTile();
-						if (currentTile.getPosY() < containerFrame.getMap().getWidth() - 1) {
-							LoadTile(containerFrame.getMap().getTile(currentTile.getPosX(), currentTile.getPosY() + 1));
+						if (currentTile.getPosY() < containerFrame.getMap()
+								.getWidth() - 1) {
+							LoadTile(containerFrame.getMap().getTile(
+									currentTile.getPosX(),
+									currentTile.getPosY() + 1));
 						}
 						if (isFocusable()) {
 							requestFocusInWindow();
 						}
-						containerFrame.setCanvasFocusOn(currentTile.getPosX(), currentTile.getPosY());
+						containerFrame.setCanvasFocusOn(currentTile.getPosX(),
+								currentTile.getPosY());
 						break;
 					// arrowdown
 					case 40:
 						SaveTile();
-						if (currentTile.getPosX() < containerFrame.getMap().getLength() - 1) {
-							LoadTile(containerFrame.getMap().getTile(currentTile.getPosX() + 1, currentTile.getPosY()));
+						if (currentTile.getPosX() < containerFrame.getMap()
+								.getLength() - 1) {
+							LoadTile(containerFrame.getMap().getTile(
+									currentTile.getPosX() + 1,
+									currentTile.getPosY()));
 						}
 						if (isFocusable()) {
 							requestFocusInWindow();
 						}
-						containerFrame.setCanvasFocusOn(currentTile.getPosX(), currentTile.getPosY());
+						containerFrame.setCanvasFocusOn(currentTile.getPosX(),
+								currentTile.getPosY());
 						break;
 					default:
 						System.out.println(e.getKeyCode());

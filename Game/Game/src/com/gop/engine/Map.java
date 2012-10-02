@@ -2,9 +2,8 @@ package com.gop.engine;
 
 import java.util.ArrayList;
 
-import com.gop.engine.Tile.textureType;
+import com.gop.engine.TextureType;
 import com.gop.graphics.TileTexture;
-
 
 public class Map {
 
@@ -45,7 +44,8 @@ public class Map {
 
 		for (int i = 0; i < length; i++) {
 			for (int j = 0; j < width; j++) {
-				map[i][j] = new Tile(GetXMLElement(XMLString, "Tile" + i + "/" + j));
+				map[i][j] = new Tile(GetXMLElement(XMLString, "Tile" + i + "/"
+						+ j));
 			}
 		}
 	}
@@ -79,8 +79,8 @@ public class Map {
 		}
 	}
 
-	public ArrayList<textureType> getAllTextureTypes() {
-		ArrayList<textureType> result = new ArrayList<textureType>();
+	public ArrayList<TextureType> getAllTextureTypes() {
+		ArrayList<TextureType> result = new ArrayList<TextureType>();
 		for (int i = 0; i < length; i++) {
 			for (int j = 0; j < width; j++) {
 				if (result.contains(map[i][j].getTexture())) {
