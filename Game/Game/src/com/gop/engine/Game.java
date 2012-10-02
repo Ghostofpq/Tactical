@@ -427,7 +427,13 @@ public class Game {
 	}
 
 	private void Move() {
-		if (map.getTile(cursor.getposX(), cursor.getposY())
+		if (cursor.getposX() == currentChar.getCurrentTileX()
+				&& cursor.getposY() == currentChar.getCurrentTileY()) {
+			map.CleanLightUpZones();
+			state = GameStatus.InCharMenu;
+		}
+
+		else if (map.getTile(cursor.getposX(), cursor.getposY())
 				.isHighlightedGreen()
 				&& !isTileOccupied(cursor.getposX(), cursor.getposY())) {
 			map.getTile(currentChar.getCurrentTileX(),
@@ -443,13 +449,18 @@ public class Game {
 
 	private void Attack() {
 		Character target = getCharOnTile(cursor.getposX(), cursor.getposY());
-		BasicAttack.Activate(currentChar, target);
-		currentChar.setHasAttacked(true);
-		cursor.focusOn(currentChar.getCurrentTileX(),
-				currentChar.getCurrentTileY());
-		UpdateCursor();
-		map.CleanLightUpZones();
-		state = GameStatus.InCharMenu;
+		if (target.equals(currentChar)) {
+			map.CleanLightUpZones();
+			state = GameStatus.InCharMenu;
+		} else {
+			BasicAttack.Activate(currentChar, target);
+			currentChar.setHasAttacked(true);
+			cursor.focusOn(currentChar.getCurrentTileX(),
+					currentChar.getCurrentTileY());
+			UpdateCursor();
+			map.CleanLightUpZones();
+			state = GameStatus.InCharMenu;
+		}
 	}
 
 	private void manageKeyInput(actions act) {
