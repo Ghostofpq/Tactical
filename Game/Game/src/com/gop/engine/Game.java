@@ -459,14 +459,15 @@ public class Game {
 		if (t.isHighlightedRed()) {
 			Character target = getCharOnTile(cursor.getposX(), cursor.getposY());
 			if (target != null) {
-				BasicAttack.Activate(currentChar, target);
-				currentChar.setHasAttacked(true);
-				cursor.focusOn(currentChar.getCurrentTileX(),
-						currentChar.getCurrentTileY());
-				UpdateCursor();
-				map.CleanLightUpZones();
-				state = GameStatus.InCharMenu;
-
+				if (!target.isDead()) {
+					BasicAttack.Activate(currentChar, target);
+					currentChar.setHasAttacked(true);
+					cursor.focusOn(currentChar.getCurrentTileX(),
+							currentChar.getCurrentTileY());
+					UpdateCursor();
+					map.CleanLightUpZones();
+					state = GameStatus.InCharMenu;
+				}
 			}
 		}
 	}
