@@ -448,18 +448,26 @@ public class Game {
 	}
 
 	private void Attack() {
-		Character target = getCharOnTile(cursor.getposX(), cursor.getposY());
-		if (target.equals(currentChar)) {
-			map.CleanLightUpZones();
-			state = GameStatus.InCharMenu;
-		} else {
-			BasicAttack.Activate(currentChar, target);
-			currentChar.setHasAttacked(true);
-			cursor.focusOn(currentChar.getCurrentTileX(),
-					currentChar.getCurrentTileY());
-			UpdateCursor();
-			map.CleanLightUpZones();
-			state = GameStatus.InCharMenu;
+		Tile t = map.getTile(cursor.getposX(), cursor.getposY());
+		if (t.isHighlighted()) {
+			if (cursor.getposX() == currentChar.getCurrentTileX()
+					&& cursor.getposY() == currentChar.getCurrentTileY()) {
+				map.CleanLightUpZones();
+				state = GameStatus.InCharMenu;
+			}
+		}
+		if (t.isHighlightedRed()) {
+			Character target = getCharOnTile(cursor.getposX(), cursor.getposY());
+			if (target != null) {
+				BasicAttack.Activate(currentChar, target);
+				currentChar.setHasAttacked(true);
+				cursor.focusOn(currentChar.getCurrentTileX(),
+						currentChar.getCurrentTileY());
+				UpdateCursor();
+				map.CleanLightUpZones();
+				state = GameStatus.InCharMenu;
+
+			}
 		}
 	}
 
