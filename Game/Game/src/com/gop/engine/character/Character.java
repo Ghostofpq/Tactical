@@ -24,7 +24,7 @@ public class Character {
 	public enum CharState {
 		Walking, Standing, Hitting, Casting, TakingDmg, Wounded, Dead
 	}
-
+	
 	private Race race;
 	private Gender gender;
 	private Job actualJob;

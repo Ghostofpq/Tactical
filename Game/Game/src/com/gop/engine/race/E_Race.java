@@ -1,4 +1,4 @@
-package com.gop.engine.character;
+package com.gop.engine.race;
 
 public enum E_Race {
 	ELVE,
