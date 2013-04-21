@@ -27,10 +27,10 @@ public class GameboardRender {
 
 	public enum viewPoint {
 		South, // base
-		West, // -90°
-		North, // -/+180°
+		West, // -90
+		North, // -/+180
 		East
-		// -270°/+90°
+		// -270+90
 	}
 
 	private viewPoint currentView;
