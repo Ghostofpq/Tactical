@@ -10,7 +10,8 @@ import org.newdawn.slick.util.ResourceLoader;
 import com.gop.engine.TextureType;
 
 public class TileTexture {
-	public String path = "C:/Users/GhostOfPQ/workspace/Tactical/Game/Game/content/textures/";
+	public String path = "content/textures/";
+	
 
 	public Texture GrassMain;
 	public Texture GrassSE;
