@@ -9,21 +9,27 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NewCharacter {
+	public enum Gender {
+		Male, Female
+	}
+
 	private Caracteristics caracteristics;
 
 	// Identity
 	private String name;
 	private String story;
 	private T_Race race;
+	private Gender gender;
 
 	// XP
 	private int level;
 	private double experience;
 	private double nextLevel;
 
-	public NewCharacter(String name, E_Race race) {
+	public NewCharacter(String name, E_Race race, Gender gender) {
 		this.name = name;
 		this.race = T_Race.Race(race);
+		this.gender = gender;
 		this.caracteristics = this.race.getBaseCaracteristics();
 
 		this.level = 1;
@@ -32,7 +38,7 @@ public class NewCharacter {
 	}
 
 	public boolean canLvlUp() {
-		return (experience>=nextLevel);
+		return (experience >= nextLevel);
 	}
 
 	public void levelUp() {
