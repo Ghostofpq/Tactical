@@ -1,5 +1,7 @@
 package com.gop.engine.character;
 
+import com.gop.engine.job.T_Job;
+import com.gop.engine.job.Warrior;
 import com.gop.engine.race.E_Race;
 import com.gop.engine.race.T_Race;
 
@@ -26,6 +28,10 @@ public class NewCharacter {
 	private double experience;
 	private double nextLevel;
 
+	// Job
+	private T_Job currentJob;
+	private Warrior jobWarrior;
+
 	public NewCharacter(String name, E_Race race, Gender gender) {
 		this.name = name;
 		this.race = T_Race.Race(race);
@@ -35,6 +41,10 @@ public class NewCharacter {
 		this.level = 1;
 		this.experience = 0;
 		this.nextLevel = 250;
+
+		this.jobWarrior = new Warrior();
+
+		this.currentJob = this.jobWarrior;
 	}
 
 	public boolean canLvlUp() {
@@ -43,13 +53,13 @@ public class NewCharacter {
 
 	public void levelUp() {
 		this.level++;
-		this.calculateNext(this.level, this.nextLevel);
+		this.calculateNextLevel();
 		this.caracteristics.plus(this.race.getLevelUpCaracteristics());
 	}
 
-	private void calculateNext(int level, double nextLevel) {
-		double coef = ((Math.sqrt(experience)) / experience);
-		nextLevel = Math.floor(coef * experience);
+	private void calculateNextLevel() {
+		double coef = (1 / (Math.sqrt(this.level)));
+		this.nextLevel = Math.floor(coef * this.nextLevel);
 	}
 
 }
