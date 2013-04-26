@@ -27,4 +27,28 @@ public abstract class T_Job {
 		this.jobPoints = 0;
 		this.cumulatedJobPoints = 0;
 	}
+
+	public boolean canUnlockCapacity(T_Capacity capacity) {
+		if (capacity.isAvailable() && this.jobPoints >= capacity.getPrice()
+				&& !capacity.isLocked()) {
+			return true;
+		}
+		return false;
+	}
+
+	public void unlockCapacity(T_Capacity capacity) {
+		if (canUnlockCapacity(capacity)) {
+			this.jobPoints -= capacity.getPrice();
+			capacity.setLocked(false);
+
+			switch (capacity.getType()) {
+			case AMELIORATION:
+				unlockedAmeliorations.add((Amelioration) capacity);
+				break;
+			case MOVE:
+				unlockedMoves.add((Move) capacity);
+				break;
+			}
+		}
+	}
 }

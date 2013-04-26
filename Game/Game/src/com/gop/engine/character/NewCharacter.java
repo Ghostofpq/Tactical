@@ -28,7 +28,7 @@ public class NewCharacter {
 	private double experience;
 	private double nextLevel;
 
-	// Job
+	// Jobs
 	private T_Job currentJob;
 	private Warrior jobWarrior;
 
