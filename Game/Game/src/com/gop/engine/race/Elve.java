@@ -11,12 +11,14 @@ public class Elve extends T_Race {
 	private final int ELVE_BASE_INTELLIGENCE = 12;
 	private final int ELVE_BASE_WILL = 11;
 	private final int ELVE_BASE_AGILITY = 11;
+	private final int ELVE_BASE_MOVEMENT = 4;
 
 	private final int ELVE_LVL_STRENGTH = 1;
 	private final int ELVE_LVL_ENDURANCE = 1;
 	private final int ELVE_LVL_INTELLIGENCE = 3;
 	private final int ELVE_LVL_WILL = 2;
 	private final int ELVE_LVL_AGILITY = 3;
+	private final int ELVE_LVL_MOVEMENT = 0;
 
 	public Elve() {
 		this.setName(ELVE_NAME);
@@ -24,9 +26,9 @@ public class Elve extends T_Race {
 		this.setRace(E_Race.ELVE);
 		this.setBaseCaracteristics(new Caracteristics(ELVE_BASE_STRENGTH,
 				ELVE_BASE_ENDURANCE, ELVE_BASE_INTELLIGENCE, ELVE_BASE_WILL,
-				ELVE_BASE_AGILITY));
+				ELVE_BASE_AGILITY, ELVE_BASE_MOVEMENT));
 		this.setLevelUpCaracteristics(new Caracteristics(ELVE_LVL_STRENGTH,
 				ELVE_LVL_ENDURANCE, ELVE_LVL_INTELLIGENCE, ELVE_LVL_WILL,
-				ELVE_LVL_AGILITY));
+				ELVE_LVL_AGILITY, ELVE_LVL_MOVEMENT));
 	}
 }

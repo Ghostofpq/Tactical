@@ -11,12 +11,14 @@ public class Human extends T_Race {
 	private final int HUMAN_BASE_INTELLIGENCE = 10;
 	private final int HUMAN_BASE_WILL = 10;
 	private final int HUMAN_BASE_AGILITY = 10;
+	private final int HUMAN_BASE_MOVEMENT = 3;
 
 	private final int HUMAN_LVL_STRENGTH = 2;
 	private final int HUMAN_LVL_ENDURANCE = 2;
 	private final int HUMAN_LVL_INTELLIGENCE = 2;
 	private final int HUMAN_LVL_WILL = 2;
 	private final int HUMAN_LVL_AGILITY = 2;
+	private final int HUMAN_LVL_MOVEMENT = 0;
 
 	public Human() {
 		this.setName(HUMAN_NAME);
@@ -24,9 +26,9 @@ public class Human extends T_Race {
 		this.setRace(E_Race.HUMAN);
 		this.setBaseCaracteristics(new Caracteristics(HUMAN_BASE_STRENGTH,
 				HUMAN_BASE_ENDURANCE, HUMAN_BASE_INTELLIGENCE, HUMAN_BASE_WILL,
-				HUMAN_BASE_AGILITY));
+				HUMAN_BASE_AGILITY, HUMAN_BASE_MOVEMENT));
 		this.setLevelUpCaracteristics(new Caracteristics(HUMAN_LVL_STRENGTH,
 				HUMAN_LVL_ENDURANCE, HUMAN_LVL_INTELLIGENCE, HUMAN_LVL_WILL,
-				HUMAN_LVL_AGILITY));
+				HUMAN_LVL_AGILITY, HUMAN_LVL_MOVEMENT));
 	}
 }
