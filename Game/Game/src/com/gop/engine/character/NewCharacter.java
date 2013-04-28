@@ -32,6 +32,10 @@ public class NewCharacter {
 	private T_Job currentJob;
 	private Warrior jobWarrior;
 
+	// Livings
+	private int lifePoint;
+	private int manaPoint;
+
 	public NewCharacter(String name, E_Race race, Gender gender) {
 		this.name = name;
 		this.race = T_Race.Race(race);
@@ -45,6 +49,8 @@ public class NewCharacter {
 		this.jobWarrior = new Warrior();
 
 		this.currentJob = this.jobWarrior;
+		
+		this.updateLifeAndManaPoint();
 	}
 
 	public boolean canLvlUp() {
@@ -55,6 +61,8 @@ public class NewCharacter {
 		this.level++;
 		this.calculateNextLevel();
 		this.caracteristics.plus(this.race.getLevelUpCaracteristics());
+
+		this.updateLifeAndManaPoint();
 	}
 
 	private void calculateNextLevel() {
@@ -62,4 +70,8 @@ public class NewCharacter {
 		this.nextLevel = Math.floor(coef * this.nextLevel);
 	}
 
+	private void updateLifeAndManaPoint() {
+		this.lifePoint = this.caracteristics.getEndurance() * 10;
+		this.manaPoint = this.caracteristics.getIntelligence() * 10;
+	}
 }

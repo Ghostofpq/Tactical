@@ -1,5 +1,7 @@
 package com.gop.engine.job;
 
+import java.util.ArrayList;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +10,8 @@ import lombok.Setter;
 public class Move extends T_Capacity {
 
 	public Move(String name, String description, int price) {
+		this.prerequisites = new ArrayList<T_Capacity>();
+
 		this.name = name;
 		this.description = description;
 

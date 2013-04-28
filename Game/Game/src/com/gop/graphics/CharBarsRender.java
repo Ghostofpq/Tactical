@@ -6,7 +6,6 @@ import org.newdawn.slick.opengl.Texture;
 
 import com.gop.engine.character.Character;
 
-
 public class CharBarsRender {
 	private float Xdep;
 	private float Ydep;
@@ -33,13 +32,21 @@ public class CharBarsRender {
 
 	public void Render() {
 		if (currentChar != null) {
-			float a = ((float) currentChar.getLifePoints() / (float) currentChar.getMaxLifePoints()) * 100f;
+			float a = ((float) currentChar.getCurrentLifePoints() / (float) currentChar
+					.getCurrentManaPoints()) * 100f;
 			HPBar.Render(a);
-			float b = ((float) currentChar.getManaPoints() / (float) currentChar.getMaxManaPoints()) * 100f;
+			float b = ((float) currentChar.getNewCharacter().getLifePoint() / (float) currentChar
+					.getNewCharacter().getManaPoint()) * 100f;
 			MPBar.Render(b);
 
-			font.drawString(Xdep + 50f, Ydep, currentChar.getLifePoints() + "/" + currentChar.getMaxLifePoints(), Color.white);
-			font.drawString(Xdep + 50f, Ydep + 25f, currentChar.getManaPoints() + "/" + currentChar.getMaxManaPoints(), Color.white);
+			font.drawString(Xdep + 50f, Ydep,
+					currentChar.getCurrentLifePoints() + "/"
+							+ currentChar.getNewCharacter().getLifePoint(),
+					Color.white);
+			font.drawString(Xdep + 50f, Ydep + 25f,
+					currentChar.getCurrentManaPoints() + "/"
+							+ currentChar.getNewCharacter().getManaPoint(),
+					Color.white);
 		}
 	}
 

@@ -1,7 +1,9 @@
 package com.gop.graphics;
 
 import com.gop.engine.character.Character.*;
+import com.gop.engine.character.NewCharacter.Gender;
 import com.gop.engine.character.job.Job.jobList;
+import com.gop.engine.race.E_Race;
 import com.gop.graphics.GameboardRender.viewPoint;
 
 public class CharAnimationBible {
@@ -17,17 +19,21 @@ public class CharAnimationBible {
 		AnimationBible = new Animation[nbPointsOfView][nbJobs][nbRaces][nbGenders][nsStances];
 	}
 
-	public Animation getAnimation(viewPoint vp, jobList job, Race race, Gender gen, CharState state) {
-		return AnimationBible[vp.ordinal()][job.ordinal()][race.ordinal()][gen.ordinal()][state.ordinal()];
+	public Animation getAnimation(viewPoint vp, jobList job, E_Race race,
+			Gender gen, CharState state) {
+		return AnimationBible[vp.ordinal()][job.ordinal()][race.ordinal()][gen
+				.ordinal()][state.ordinal()];
 	}
 
 	public void CreateAll() {
 		for (viewPoint vp : viewPoint.values()) {
 			for (jobList job : jobList.values()) {
-				for (Race race : Race.values()) {
+				for (E_Race race : E_Race.values()) {
 					for (Gender gen : Gender.values()) {
 						for (CharState state : CharState.values()) {
-							AnimationBible[vp.ordinal()][job.ordinal()][race.ordinal()][gen.ordinal()][state.ordinal()] = new CharAnimation(vp, job, race, gen, state);
+							AnimationBible[vp.ordinal()][job.ordinal()][race
+									.ordinal()][gen.ordinal()][state.ordinal()] = new CharAnimation(
+									vp, job, race, gen, state);
 						}
 					}
 				}
@@ -38,10 +44,12 @@ public class CharAnimationBible {
 	public void LoadAll() {
 		for (viewPoint vp : viewPoint.values()) {
 			for (jobList job : jobList.values()) {
-				for (Race race : Race.values()) {
+				for (E_Race race : E_Race.values()) {
 					for (Gender gen : Gender.values()) {
 						for (CharState state : CharState.values()) {
-							AnimationBible[vp.ordinal()][job.ordinal()][race.ordinal()][gen.ordinal()][state.ordinal()].Load();
+							AnimationBible[vp.ordinal()][job.ordinal()][race
+									.ordinal()][gen.ordinal()][state.ordinal()]
+									.Load();
 						}
 					}
 				}

@@ -3,12 +3,13 @@ package com.gop.engine;
 import org.lwjgl.Sys;
 import org.newdawn.slick.util.Log;
 
+import com.gop.engine.InputManager.actions;
 import com.gop.engine.character.Character;
-import com.gop.engine.character.Character.*;
+import com.gop.engine.character.NewCharacter;
+import com.gop.engine.character.NewCharacter.Gender;
 import com.gop.engine.character.capacities.BasicAttack;
 import com.gop.engine.character.capacities.Range;
-import com.gop.engine.character.capacities.Range.RangeType;
-import com.gop.engine.InputManager.actions;
+import com.gop.engine.race.E_Race;
 import com.gop.graphics.DisplayManager;
 import com.gop.graphics.GameboardRender.viewPoint;
 
@@ -122,10 +123,10 @@ public class Game {
 			break;
 		case InCharMenu:
 			dm.getHUD().getContextMenu().setShow(true);
-			if (currentChar.hasMoved()) {
+			if (currentChar.isHasMoved()) {
 				dm.getHUD().getContextMenu().DisableOption(0);
 			}
-			if (currentChar.hasAttacked()) {
+			if (currentChar.isHasAttacked()) {
 				dm.getHUD().getContextMenu().DisableOption(1);
 			}
 			break;
@@ -208,7 +209,7 @@ public class Game {
 
 			if (!dm.getGameBoard().isBusy()) {
 				if (currentChar != null) {
-					if (!currentChar.IsMoving()) {
+					if (!currentChar.isMoving()) {
 						manageKeyInput(act);
 					}
 				} else {
@@ -234,7 +235,7 @@ public class Game {
 			if (!isTileOccupied(cursor.getposX(), cursor.getposY())) {
 				currentChar.setCurrentTileX(cursor.getposX());
 				currentChar.setCurrentTileY(cursor.getposY());
-				currentChar.setHeight(map.getTile(cursor.getposX(),
+				currentChar.setPosZ(map.getTile(cursor.getposX(),
 						cursor.getposY()).getHeight());
 				charPlaced = true;
 				currentChar.setPlaced(true);
@@ -271,12 +272,13 @@ public class Game {
 		case Actions:
 			switch (dm.getHUD().getContextMenu().getIndex()) {
 			case 0:
-				if (currentChar.hasMoved()) {
+				if (currentChar.isHasMoved()) {
 
 				} else {
 					LightUpPossibleMovementR(currentChar.getCurrentTileX(),
-							currentChar.getCurrentTileY(),
-							currentChar.getMovement());
+							currentChar.getCurrentTileY(), currentChar
+									.getNewCharacter().getCaracteristics()
+									.getMovement());
 					state = GameStatus.MoveSelection;
 				}
 				dm.getHUD().getContextMenu().setShow(false);
@@ -440,7 +442,7 @@ public class Game {
 					currentChar.getCurrentTileY()).setHighlighted(false);
 			currentChar.setTileToGoX(cursor.getposX());
 			currentChar.setTileToGoY(cursor.getposY());
-			currentChar.setIsMoving(true);
+			currentChar.setMoving(true);
 			currentChar.setHasMoved(true);
 			map.CleanLightUpZones();
 			state = GameStatus.InCharMenu;
@@ -594,21 +596,23 @@ public class Game {
 		 * (FileNotFoundException ex) { ex.printStackTrace(); } catch
 		 * (IOException ex) { ex.printStackTrace(); }
 		 */
-		Character c1 = new Character(Race.Human, Gender.Male);
-		c1.setName("bobix1");
-		Character c2 = new Character(Race.Dwarf, Gender.Male);
-		c2.setName("bobix2");
-		Character c3 = new Character(Race.Elve, Gender.Male);
-		c3.setRange(5, RangeType.Cross);
-		c3.setName("bobixou1");
-		Character c4 = new Character(Race.Human, Gender.Male);
-		c4.setName("bobixou2");
-		Character c5 = new Character(Race.Human, Gender.Male);
-		c5.setName("bobixou3");
+		NewCharacter nc1 = new NewCharacter("Bobyx", E_Race.HUMAN, Gender.Male);
+		Character c1 = new Character(nc1);
+		NewCharacter nc2 = new NewCharacter("Bobyx2", E_Race.DWARF, Gender.Male);
+		Character c2 = new Character(nc2);
+
+		NewCharacter nc3 = new NewCharacter("Bobixou1", E_Race.DWARF,
+				Gender.Male);
+		Character c3 = new Character(nc3);
+		NewCharacter nc4 = new NewCharacter("Bobixou2", E_Race.ELVE,
+				Gender.Male);
+		Character c4 = new Character(nc4);
+		NewCharacter nc5 = new NewCharacter("Bobixou3", E_Race.HUMAN,
+				Gender.Male);
+		Character c5 = new Character(nc5);
+
 		Player p1 = new Player("bobyx", new Character[] { c1, c2 });
 		Player p2 = new Player("bobyxou", new Character[] { c3, c4, c5 });
-
-		c3.setLifePoints(10);
 
 		map.getTile(5, 2).setDeploymentZone(1);
 		map.getTile(5, 3).setDeploymentZone(1);

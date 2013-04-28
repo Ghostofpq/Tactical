@@ -8,6 +8,6 @@ public abstract class Capacity {
 	protected static int manaCost;
 
 	public static void Activate(Character activator, Character target) {
-		activator.setManaPoints(activator.getManaPoints()-manaCost);
+		activator.setCurrentManaPoints(activator.getCurrentManaPoints()-manaCost);
 	}
 }

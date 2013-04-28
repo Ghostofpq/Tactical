@@ -56,49 +56,49 @@ public class CharCaracRender {
 	public void RenderATK(Character c, float X, float Y) {
 		RenderATKimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getAttackPower()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getStrength()), Color.white);
 	}
 
 	public void RenderMAG(Character c, float X, float Y) {
 		RenderMAGimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getMagicPower()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getIntelligence()), Color.white);
 	}
 
 	public void RenderARM(Character c, float X, float Y) {
 		RenderARMimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getArmor()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getEndurance()), Color.white);
 	}
 
 	public void RenderMAR(Character c, float X, float Y) {
 		RenderMARimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getMagicArmor()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getWill()), Color.white);
 	}
 
 	public void RenderARP(Character c, float X, float Y) {
 		RenderARPimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getArmorPenetration()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(0), Color.white);
 	}
 
 	public void RenderMAP(Character c, float X, float Y) {
 		RenderMAPimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getMagicPenetration()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(0), Color.white);
 	}
 
 	public void RenderI(Character c, float X, float Y) {
 		RenderIimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getInitiative()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getAgility()), Color.white);
 	}
 
 	public void RenderM(Character c, float X, float Y) {
 		RenderMimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getMovement()), Color.white);
+		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getMovement()), Color.white);
 	}
 
 	public void RenderATKimg(float X, float Y) {
