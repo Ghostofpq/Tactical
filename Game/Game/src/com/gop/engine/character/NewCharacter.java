@@ -90,6 +90,16 @@ public class NewCharacter {
 	 */
 	private int manaPoint;
 
+	/**
+	 * Creates a new Character level 1 Warrior.
+	 * 
+	 * @param name
+	 *            name of the character
+	 * @param race
+	 *            {@link E_Race} of the character
+	 * @param gender
+	 *            {@link Gender} of the character
+	 */
 	public NewCharacter(String name, E_Race race, Gender gender) {
 		// Identity
 		this.name = name;
@@ -108,21 +118,27 @@ public class NewCharacter {
 		// Caracteristics
 		this.characteristics = this.race.getBaseCaracteristics();
 		this.aggregatedCharacteristics = new Characteristics(0, 0, 0, 0, 0, 0);
-		calculateAggregatedCaracteristics();
-		updateLifeAndManaPoint();
 
+		updateLifeAndManaPoint();
 	}
 
-	public boolean canLvlUp() {
+	public void gainXp(double experience) {
+		this.experience += experience;
+		while (canLevelUp()) {
+			levelUp();
+		}
+	}
+
+	private boolean canLevelUp() {
 		return (experience >= nextLevel);
 	}
 
-	public void levelUp() {
+	private void levelUp() {
 		this.level++;
 		this.calculateNextLevel();
 		this.characteristics.plus(this.race.getLevelUpCaracteristics());
 
-		this.updateLifeAndManaPoint();
+		updateLifeAndManaPoint();
 	}
 
 	private void calculateNextLevel() {
@@ -131,6 +147,7 @@ public class NewCharacter {
 	}
 
 	private void updateLifeAndManaPoint() {
+		calculateAggregatedCaracteristics();
 		this.lifePoint = this.aggregatedCharacteristics.getEndurance() * 10;
 		this.manaPoint = this.aggregatedCharacteristics.getIntelligence() * 10;
 	}
