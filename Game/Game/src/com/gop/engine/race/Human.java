@@ -1,6 +1,6 @@
 package com.gop.engine.race;
 
-import com.gop.engine.character.Caracteristics;
+import com.gop.engine.character.Characteristics;
 
 public class Human extends T_Race {
 	private final String HUMAN_NAME = "Human";
@@ -24,10 +24,10 @@ public class Human extends T_Race {
 		this.setName(HUMAN_NAME);
 		this.setDescription(HUMAN_DESCRIPTION);
 		this.setRace(E_Race.HUMAN);
-		this.setBaseCaracteristics(new Caracteristics(HUMAN_BASE_STRENGTH,
+		this.setBaseCaracteristics(new Characteristics(HUMAN_BASE_STRENGTH,
 				HUMAN_BASE_ENDURANCE, HUMAN_BASE_INTELLIGENCE, HUMAN_BASE_WILL,
 				HUMAN_BASE_AGILITY, HUMAN_BASE_MOVEMENT));
-		this.setLevelUpCaracteristics(new Caracteristics(HUMAN_LVL_STRENGTH,
+		this.setLevelUpCaracteristics(new Characteristics(HUMAN_LVL_STRENGTH,
 				HUMAN_LVL_ENDURANCE, HUMAN_LVL_INTELLIGENCE, HUMAN_LVL_WILL,
 				HUMAN_LVL_AGILITY, HUMAN_LVL_MOVEMENT));
 	}

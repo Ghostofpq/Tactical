@@ -7,7 +7,6 @@ import org.newdawn.slick.opengl.Texture;
 
 import com.gop.engine.character.Character;
 
-
 public class CharCaracRender {
 	private Texture ATK;
 	private Texture MAG;
@@ -28,7 +27,8 @@ public class CharCaracRender {
 		currentChar = null;
 	}
 
-	public void Init(Texture ATK, Texture MAG, Texture ARM, Texture MAR, Texture ARP, Texture MAP, Texture I, Texture M, UnicodeFont font) {
+	public void Init(Texture ATK, Texture MAG, Texture ARM, Texture MAR,
+			Texture ARP, Texture MAP, Texture I, Texture M, UnicodeFont font) {
 		this.font = font;
 		this.ATK = ATK;
 		this.MAG = MAG;
@@ -56,25 +56,41 @@ public class CharCaracRender {
 	public void RenderATK(Character c, float X, float Y) {
 		RenderATKimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getStrength()), Color.white);
+		font.drawString(
+				X + 25f,
+				Y,
+				String.valueOf(c.getNewCharacter().getCharacteristics()
+						.getStrength()), Color.white);
 	}
 
 	public void RenderMAG(Character c, float X, float Y) {
 		RenderMAGimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getIntelligence()), Color.white);
+		font.drawString(
+				X + 25f,
+				Y,
+				String.valueOf(c.getNewCharacter().getCharacteristics()
+						.getIntelligence()), Color.white);
 	}
 
 	public void RenderARM(Character c, float X, float Y) {
 		RenderARMimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getEndurance()), Color.white);
+		font.drawString(
+				X + 25f,
+				Y,
+				String.valueOf(c.getNewCharacter().getCharacteristics()
+						.getEndurance()), Color.white);
 	}
 
 	public void RenderMAR(Character c, float X, float Y) {
 		RenderMARimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getWill()), Color.white);
+		font.drawString(
+				X + 25f,
+				Y,
+				String.valueOf(c.getNewCharacter().getCharacteristics()
+						.getWill()), Color.white);
 	}
 
 	public void RenderARP(Character c, float X, float Y) {
@@ -92,13 +108,21 @@ public class CharCaracRender {
 	public void RenderI(Character c, float X, float Y) {
 		RenderIimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getAgility()), Color.white);
+		font.drawString(
+				X + 25f,
+				Y,
+				String.valueOf(c.getNewCharacter().getCharacteristics()
+						.getAgility()), Color.white);
 	}
 
 	public void RenderM(Character c, float X, float Y) {
 		RenderMimg(X, Y);
 		Color.white.bind();
-		font.drawString(X + 25f, Y, String.valueOf(c.getNewCharacter().getCaracteristics().getMovement()), Color.white);
+		font.drawString(
+				X + 25f,
+				Y,
+				String.valueOf(c.getNewCharacter().getCharacteristics()
+						.getMovement()), Color.white);
 	}
 
 	public void RenderATKimg(float X, float Y) {

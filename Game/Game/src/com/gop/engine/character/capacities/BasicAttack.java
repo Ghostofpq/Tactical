@@ -10,8 +10,8 @@ public class BasicAttack extends Capacity {
 	static int manaCost = 0;
 
 	public static void Activate(Character activator, Character target) {
-		int AD = activator.getNewCharacter().getCaracteristics().getStrength();
-		int arm = target.getNewCharacter().getCaracteristics().getEndurance() ;
+		int AD = activator.getNewCharacter().getCharacteristics().getStrength();
+		int arm = target.getNewCharacter().getCharacteristics().getEndurance() ;
 		float dmgRed = ((float) arm / ((float) arm + 100));
 		float totalDmg = ((float) AD - ((float) AD * dmgRed));
 		Log.debug("======Attack======");

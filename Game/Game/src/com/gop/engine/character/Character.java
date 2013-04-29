@@ -81,7 +81,7 @@ public class Character {
 
 	public void HourglassTick() {
 		if (!isDead()) {
-			hourglass -= this.newCharacter.getCaracteristics().getAgility();
+			hourglass -= this.newCharacter.getCharacteristics().getAgility();
 			if (hourglass <= 0) {
 				hourglass = 0;
 				setReadyToPlay(true);
@@ -131,11 +131,11 @@ public class Character {
 	}
 
 	public int getMovement() {
-		return this.newCharacter.getCaracteristics().getMovement();
+		return this.newCharacter.getCharacteristics().getMovement();
 	}
 
 	public int getInitiative() {
-		return this.newCharacter.getCaracteristics().getAgility();
+		return this.newCharacter.getCharacteristics().getAgility();
 	}
 
 	public void setCurrentTileX(int currentTileX) {

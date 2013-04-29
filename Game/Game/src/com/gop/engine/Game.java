@@ -277,7 +277,7 @@ public class Game {
 				} else {
 					LightUpPossibleMovementR(currentChar.getCurrentTileX(),
 							currentChar.getCurrentTileY(), currentChar
-									.getNewCharacter().getCaracteristics()
+									.getNewCharacter().getCharacteristics()
 									.getMovement());
 					state = GameStatus.MoveSelection;
 				}
@@ -596,19 +596,19 @@ public class Game {
 		 * (FileNotFoundException ex) { ex.printStackTrace(); } catch
 		 * (IOException ex) { ex.printStackTrace(); }
 		 */
-		NewCharacter nc1 = new NewCharacter("Bobyx", E_Race.HUMAN, Gender.Male);
+		NewCharacter nc1 = new NewCharacter("Bobyx", E_Race.HUMAN, Gender.MALE);
 		Character c1 = new Character(nc1);
-		NewCharacter nc2 = new NewCharacter("Bobyx2", E_Race.DWARF, Gender.Male);
+		NewCharacter nc2 = new NewCharacter("Bobyx2", E_Race.DWARF, Gender.MALE);
 		Character c2 = new Character(nc2);
 
 		NewCharacter nc3 = new NewCharacter("Bobixou1", E_Race.DWARF,
-				Gender.Male);
+				Gender.MALE);
 		Character c3 = new Character(nc3);
 		NewCharacter nc4 = new NewCharacter("Bobixou2", E_Race.ELVE,
-				Gender.Male);
+				Gender.MALE);
 		Character c4 = new Character(nc4);
 		NewCharacter nc5 = new NewCharacter("Bobixou3", E_Race.HUMAN,
-				Gender.Male);
+				Gender.MALE);
 		Character c5 = new Character(nc5);
 
 		Player p1 = new Player("bobyx", new Character[] { c1, c2 });
