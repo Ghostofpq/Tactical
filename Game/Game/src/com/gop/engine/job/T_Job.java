@@ -1,5 +1,6 @@
 package com.gop.engine.job;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.gop.engine.character.Characteristics;
@@ -28,6 +29,9 @@ public abstract class T_Job {
 
 		this.jobPoints = 0;
 		this.cumulatedJobPoints = 0;
+
+		this.unlockedMoves = new ArrayList<Move>();
+		this.unlockedAmeliorations = new ArrayList<Amelioration>();
 	}
 
 	public boolean canUnlockCapacity(T_Capacity capacity) {
