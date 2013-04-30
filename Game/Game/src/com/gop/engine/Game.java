@@ -5,8 +5,8 @@ import org.newdawn.slick.util.Log;
 
 import com.gop.engine.InputManager.actions;
 import com.gop.engine.character.Character;
+import com.gop.engine.character.Identity.Gender;
 import com.gop.engine.character.NewCharacter;
-import com.gop.engine.character.NewCharacter.Gender;
 import com.gop.engine.character.capacities.BasicAttack;
 import com.gop.engine.character.capacities.Range;
 import com.gop.engine.race.E_Race;

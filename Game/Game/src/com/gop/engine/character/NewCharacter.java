@@ -1,5 +1,6 @@
 package com.gop.engine.character;
 
+import com.gop.engine.character.Identity.Gender;
 import com.gop.engine.job.T_Job;
 import com.gop.engine.job.Warrior;
 import com.gop.engine.race.E_Race;
@@ -22,12 +23,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NewCharacter {
-	/**
-	 * Female or Male
-	 */
-	public enum Gender {
-		FEMALE, MALE
-	}
 
 	// Identity
 	/**
