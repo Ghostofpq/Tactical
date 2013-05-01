@@ -1,5 +1,5 @@
 package com.gop.engine.job;
 
-public enum E_JobList {
+public enum E_Job {
 	WARRIOR
 }

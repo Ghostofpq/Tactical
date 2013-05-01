@@ -1,6 +1,6 @@
 package com.gop.engine.race;
 
-import com.gop.engine.character.Characteristics;
+import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 public abstract class T_Race {
 	private E_Race race;
-	private Characteristics baseCaracteristics;
-	private Characteristics levelUpCaracteristics;
+	private PrimaryCharacteristics baseCaracteristics;
+	private PrimaryCharacteristics levelUpCaracteristics;
 
 	private String description;
 	private String name;

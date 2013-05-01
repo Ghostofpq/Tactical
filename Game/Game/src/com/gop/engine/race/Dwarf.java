@@ -1,6 +1,6 @@
 package com.gop.engine.race;
 
-import com.gop.engine.character.Characteristics;
+import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 public class Dwarf extends T_Race {
 	private final String DWARF_NAME = "Dwarf";
@@ -24,10 +24,10 @@ public class Dwarf extends T_Race {
 		this.setName(DWARF_NAME);
 		this.setDescription(DWARF_DESCRIPTION);
 		this.setRace(E_Race.DWARF);
-		this.setBaseCaracteristics(new Characteristics(DWARF_BASE_STRENGTH,
+		this.setBaseCaracteristics(new PrimaryCharacteristics(DWARF_BASE_STRENGTH,
 				DWARF_BASE_ENDURANCE, DWARF_BASE_INTELLIGENCE, DWARF_BASE_WILL,
 				DWARF_BASE_AGILITY, DWARF_BASE_MOVEMENT));
-		this.setLevelUpCaracteristics(new Characteristics(DWARF_LVL_STRENGTH,
+		this.setLevelUpCaracteristics(new PrimaryCharacteristics(DWARF_LVL_STRENGTH,
 				DWARF_LVL_ENDURANCE, DWARF_LVL_INTELLIGENCE, DWARF_LVL_WILL,
 				DWARF_LVL_AGILITY, DWARF_LVL_MOVEMENT));
 	}

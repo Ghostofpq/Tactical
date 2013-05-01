@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.gop.engine.character.Characteristics;
+import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 @Getter
 @Setter
 public class Amelioration extends T_Capacity {
 
-	private Characteristics caracteristics;
+	private PrimaryCharacteristics caracteristics;
 
 	public Amelioration(String name, String description,
-			Characteristics caracteristics, int price) {
+			PrimaryCharacteristics caracteristics, int price) {
 		this.prerequisites = new ArrayList<T_Capacity>();
 		
 		this.name = name;

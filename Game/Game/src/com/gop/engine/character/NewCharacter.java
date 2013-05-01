@@ -1,6 +1,7 @@
 package com.gop.engine.character;
 
 import com.gop.engine.character.Identity.Gender;
+import com.gop.engine.characteristics.PrimaryCharacteristics;
 import com.gop.engine.job.T_Job;
 import com.gop.engine.job.Warrior;
 import com.gop.engine.race.E_Race;
@@ -68,14 +69,14 @@ public class NewCharacter {
 
 	// Caracteristics
 	/**
-	 * {@link Characteristics} of the character acquired by leveling
+	 * {@link PrimaryCharacteristics} of the character acquired by leveling
 	 */
-	private Characteristics characteristics;
+	private PrimaryCharacteristics characteristics;
 	/**
-	 * Aggregated {@link Characteristics} of the character (with job and
+	 * Aggregated {@link PrimaryCharacteristics} of the character (with job and
 	 * equipement)
 	 */
-	private Characteristics aggregatedCharacteristics;
+	private PrimaryCharacteristics aggregatedCharacteristics;
 	/**
 	 * Life point of the character
 	 */
@@ -112,7 +113,7 @@ public class NewCharacter {
 
 		// Caracteristics
 		this.characteristics = this.race.getBaseCaracteristics();
-		this.aggregatedCharacteristics = new Characteristics(0, 0, 0, 0, 0, 0);
+		this.aggregatedCharacteristics = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
 
 		updateLifeAndManaPoint();
 	}
@@ -147,14 +148,14 @@ public class NewCharacter {
 		this.manaPoint = this.aggregatedCharacteristics.getIntelligence() * 10;
 	}
 
-	private Characteristics getBonusFromJobs() {
-		Characteristics result = new Characteristics(0, 0, 0, 0, 0, 0);
+	private PrimaryCharacteristics getBonusFromJobs() {
+		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
 		result.plus(this.jobWarrior.getAggregatedCaracteristics());
 		return result;
 	}
 
-	private Characteristics getBonusFromEquipement() {
-		Characteristics result = new Characteristics(0, 0, 0, 0, 0, 0);
+	private PrimaryCharacteristics getBonusFromEquipement() {
+		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
 
 		return result;
 	}

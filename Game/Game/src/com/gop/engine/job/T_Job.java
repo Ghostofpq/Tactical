@@ -3,7 +3,7 @@ package com.gop.engine.job;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gop.engine.character.Characteristics;
+import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -58,8 +58,8 @@ public abstract class T_Job {
 		}
 	}
 
-	public Characteristics getAggregatedCaracteristics() {
-		Characteristics result = new Characteristics(0, 0, 0, 0, 0, 0);
+	public PrimaryCharacteristics getAggregatedCaracteristics() {
+		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
 
 		for (Amelioration amelioration : unlockedAmeliorations) {
 			result.plus(amelioration.getCaracteristics());

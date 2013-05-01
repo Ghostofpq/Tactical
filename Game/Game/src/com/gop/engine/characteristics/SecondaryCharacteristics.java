@@ -1,4 +1,4 @@
-package com.gop.engine.equipement;
+package com.gop.engine.characteristics;
 
 import lombok.Getter;
 import lombok.Setter;

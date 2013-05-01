@@ -1,11 +1,11 @@
-package com.gop.engine.character;
+package com.gop.engine.characteristics;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Characteristics {
+public class PrimaryCharacteristics {
 	private int strength;
 	private int endurance;
 	private int intelligence;
@@ -13,7 +13,7 @@ public class Characteristics {
 	private int agility;
 	private int movement;
 
-	public Characteristics(int strength, int endurance, int intelligence,
+	public PrimaryCharacteristics(int strength, int endurance, int intelligence,
 			int will, int agility, int movement) {
 		this.setStrength(strength);
 		this.setEndurance(endurance);
@@ -23,7 +23,7 @@ public class Characteristics {
 		this.setMovement(movement);
 	}
 
-	public void plus(Characteristics characteristics) {
+	public void plus(PrimaryCharacteristics characteristics) {
 		this.setStrength(this.getStrength() + characteristics.getStrength());
 		this.setEndurance(this.getEndurance() + characteristics.getEndurance());
 		this.setIntelligence(this.getIntelligence()
