@@ -5,7 +5,7 @@ import java.util.List;
 import com.gop.engine.job.E_Job;
 import com.gop.engine.race.E_Race;
 
-public class Helm extends Armor {
+public class Helm extends ArmorSet {
 
 	public Helm(String name, String desc, List<E_Job> authorisedJobs,
 			List<E_Race> authorisedRaces) {
