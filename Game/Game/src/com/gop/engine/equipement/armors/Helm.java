@@ -1,4 +1,4 @@
-package com.gop.engine.equipement;
+package com.gop.engine.equipement.armors;
 
 import java.util.List;
 

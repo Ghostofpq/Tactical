@@ -1,4 +1,7 @@
-package com.gop.engine.equipement;
+package com.gop.engine.equipement.consumables;
+
+import com.gop.engine.equipement.E_Item_Type;
+import com.gop.engine.equipement.Item;
 
 import lombok.Getter;
 import lombok.Setter;

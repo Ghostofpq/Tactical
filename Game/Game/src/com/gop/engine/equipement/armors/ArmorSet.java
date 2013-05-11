@@ -1,10 +1,12 @@
-package com.gop.engine.equipement;
+package com.gop.engine.equipement.armors;
 
 import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import com.gop.engine.equipement.E_Item_Type;
+import com.gop.engine.equipement.EquipableItem;
 import com.gop.engine.job.E_Job;
 import com.gop.engine.race.E_Race;
 

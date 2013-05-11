@@ -1,4 +1,4 @@
-package com.gop.engine.equipement;
+package com.gop.engine.equipement.consumables;
 
 import com.gop.engine.character.NewCharacter;
 

@@ -2,12 +2,11 @@ package com.gop.engine.equipement;
 
 import java.util.List;
 
-import com.gop.engine.character.NewCharacter;
-import com.gop.engine.job.E_Job;
-import com.gop.engine.race.E_Race;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import com.gop.engine.job.E_Job;
+import com.gop.engine.race.E_Race;
 
 @Getter
 @Setter
