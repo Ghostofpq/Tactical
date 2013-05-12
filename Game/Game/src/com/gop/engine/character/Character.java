@@ -126,8 +126,8 @@ public class Character {
 	public void SetCurrentAnimationViewPoint(viewPoint vp) {
 		this.currentAnimation = animationBible.getAnimation(vp,
 				jobList.valueOf(this.newCharacter.getCurrentJob().getName()),
-				this.newCharacter.getRace().getRace(),
-				this.newCharacter.getGender(), this.state);
+				this.newCharacter.getIdentity().getRace().getRace(),
+				this.newCharacter.getIdentity().getGender(), this.state);
 	}
 
 	public int getMovement() {

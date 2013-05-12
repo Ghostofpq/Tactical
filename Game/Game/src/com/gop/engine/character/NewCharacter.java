@@ -2,6 +2,7 @@ package com.gop.engine.character;
 
 import com.gop.engine.character.Identity.Gender;
 import com.gop.engine.characteristics.PrimaryCharacteristics;
+import com.gop.engine.characteristics.SecondaryCharacteristics;
 import com.gop.engine.job.T_Job;
 import com.gop.engine.job.Warrior;
 import com.gop.engine.race.E_Race;
@@ -27,23 +28,18 @@ public class NewCharacter {
 
 	// Identity
 	/**
-	 * Name of the character
+	 * Identity of the character
 	 */
-	private String name;
+	private Identity identity;
 	/**
 	 * Background story of the character
 	 */
 	private String story;
-	/**
-	 * {@link T_Race} of the Character
-	 */
-	private T_Race race;
-	/**
-	 * {@link Gender} of the Character
-	 */
-	private Gender gender;
 
 	// Evolution
+	private final int DEFAULT_START_LEVEL = 1;
+	private final double DEFAULT_START_XP = 0;
+	private final double DEFAULT_START_NEXT_LEVEL = 250;
 	/**
 	 * Level of the character
 	 */
@@ -73,10 +69,22 @@ public class NewCharacter {
 	 */
 	private PrimaryCharacteristics characteristics;
 	/**
+	 * {@link SecondaryCharacteristics} of the character acquired by calculation
+	 * from leveling
+	 */
+	private SecondaryCharacteristics secondaryCharacteristics;
+
+	/**
 	 * Aggregated {@link PrimaryCharacteristics} of the character (with job and
 	 * equipement)
 	 */
 	private PrimaryCharacteristics aggregatedCharacteristics;
+	/**
+	 * Aggregated {@link SecondaryCharacteristics} of the character (with job and
+	 * equipement)
+	 */
+	private SecondaryCharacteristics aggregatedSecondaryCharacteristics;
+
 	/**
 	 * Life point of the character
 	 */
@@ -98,22 +106,23 @@ public class NewCharacter {
 	 */
 	public NewCharacter(String name, E_Race race, Gender gender) {
 		// Identity
-		this.name = name;
-		this.race = T_Race.Race(race);
-		this.gender = gender;
+		this.identity = new Identity(name, T_Race.Race(race), gender);
 
 		// XP
-		this.level = 1;
-		this.experience = 0;
-		this.nextLevel = 250;
+		this.level = DEFAULT_START_LEVEL;
+		this.experience = DEFAULT_START_XP;
+		this.nextLevel = DEFAULT_START_NEXT_LEVEL;
 
 		// Jobs
 		this.jobWarrior = new Warrior();
 		this.currentJob = this.jobWarrior;
 
 		// Caracteristics
-		this.characteristics = this.race.getBaseCaracteristics();
-		this.aggregatedCharacteristics = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
+		this.characteristics = this.getIdentity().getRace()
+				.getBaseCaracteristics();
+		this.aggregatedCharacteristics = new PrimaryCharacteristics(0, 0, 0, 0,
+				0, 0);
+		
 
 		updateLifeAndManaPoint();
 	}
@@ -132,7 +141,8 @@ public class NewCharacter {
 	private void levelUp() {
 		this.level++;
 		this.calculateNextLevel();
-		this.characteristics.plus(this.race.getLevelUpCaracteristics());
+		this.characteristics.plus(this.getIdentity().getRace()
+				.getLevelUpCaracteristics());
 
 		updateLifeAndManaPoint();
 	}
@@ -149,13 +159,15 @@ public class NewCharacter {
 	}
 
 	private PrimaryCharacteristics getBonusFromJobs() {
-		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
+		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0,
+				0, 0);
 		result.plus(this.jobWarrior.getAggregatedCaracteristics());
 		return result;
 	}
 
 	private PrimaryCharacteristics getBonusFromEquipement() {
-		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
+		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0,
+				0, 0);
 
 		return result;
 	}

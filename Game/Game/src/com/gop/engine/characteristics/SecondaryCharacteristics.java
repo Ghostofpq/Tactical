@@ -46,6 +46,23 @@ public class SecondaryCharacteristics {
 		this.resilience = resilience;
 	}
 
+	public SecondaryCharacteristics(PrimaryCharacteristics caracteristics) {
+		this.attackDamage = caracteristics.getStrength();
+		this.magicalDamage = caracteristics.getIntelligence();
+		this.armor = caracteristics.getEndurance();
+		this.magicResist = caracteristics.getWill();
+		this.armorPenetration = 0;
+		this.magicPenetration = 0;
+		this.speed = 0;
+		this.lifeRegeneration = 0;
+		this.manaRegeneration = 0;
+		this.escape = caracteristics.getAgility() / 1000;
+		this.criticalStrike = caracteristics.getStrength() / 1000;
+		this.precision = caracteristics.getAgility() / 1000;
+		this.resilience = (caracteristics.getWill() / 1000)
+				+ (caracteristics.getEndurance() / 1000);
+	}
+
 	public void plus(SecondaryCharacteristics secondaryCharacteristics) {
 		this.setAttackDamage(this.getAttackDamage()
 				+ secondaryCharacteristics.getAttackDamage());

@@ -6,7 +6,6 @@ import org.newdawn.slick.opengl.Texture;
 
 import com.gop.engine.character.Character;
 
-
 public class CharDescRender {
 	private Texture Portrait;
 	private UnicodeFont font;
@@ -29,22 +28,26 @@ public class CharDescRender {
 
 	public void RenderName(float X, float Y) {
 		Color.white.bind();
-		font.drawString(X, Y, currentChar.getNewCharacter().getName(), Color.white);
+		font.drawString(X, Y, currentChar.getNewCharacter().getIdentity()
+				.getName(), Color.white);
 	}
 
 	public void RenderRace(float X, float Y) {
 		Color.white.bind();
-		font.drawString(X, Y, currentChar.getNewCharacter().getRace().getName(), Color.white);
+		font.drawString(X, Y, currentChar.getNewCharacter().getIdentity()
+				.getRace().getName(), Color.white);
 	}
 
 	public void RenderLvl(float X, float Y) {
 		Color.white.bind();
-		font.drawString(X, Y, "lvl : " + currentChar.getNewCharacter().getLevel(), Color.white);
+		font.drawString(X, Y, "lvl : "
+				+ currentChar.getNewCharacter().getLevel(), Color.white);
 	}
 
 	public void RenderJob(float X, float Y) {
 		Color.white.bind();
-		font.drawString(X, Y, currentChar.getNewCharacter().getCurrentJob().getName(), Color.white);
+		font.drawString(X, Y, currentChar.getNewCharacter().getCurrentJob()
+				.getName(), Color.white);
 	}
 
 	public void setXdep(float xdep) {
