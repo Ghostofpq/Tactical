@@ -1,10 +1,15 @@
 package com.gop.engine;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.newdawn.slick.opengl.Texture;
 
 import com.gop.engine.character.Character;
 import com.gop.graphics.TileTexture;
 
+@Getter
+@Setter
 public class Tile {
 
 	public enum tileType {
@@ -22,6 +27,7 @@ public class Tile {
 	private boolean isHighlighted;
 	private boolean isHighlightedGreen;
 	private boolean isHighlightedRed;
+	
 	private TextureType texture;
 	private tileType type;
 	private decorationType decoration;
@@ -157,144 +163,5 @@ public class Tile {
 		s += "</DZ>";
 
 		return s;
-	}
-
-	// GET SET
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public TextureType getTexture() {
-		return texture;
-	}
-
-	public void setTexture(TextureType texture) {
-		this.texture = texture;
-	}
-
-	public tileType getType() {
-		return type;
-	}
-
-	public void setType(tileType type) {
-		this.type = type;
-	}
-
-	public decorationType getDecoration() {
-		return decoration;
-	}
-
-	public void setDecoration(decorationType decoration) {
-		this.decoration = decoration;
-	}
-
-	public boolean isHighlighted() {
-		return isHighlighted;
-	}
-
-	public void setHighlighted(boolean isHighlighted) {
-		this.isHighlighted = isHighlighted;
-	}
-
-	public boolean isHighlightedGreen() {
-		return isHighlightedGreen;
-	}
-
-	public void setHighlightedGreen(boolean isHighlightedGreen) {
-		this.isHighlightedGreen = isHighlightedGreen;
-	}
-
-	public boolean isHighlightedRed() {
-		return isHighlightedRed;
-	}
-
-	public void setHighlightedRed(boolean isHighlightedRed) {
-		this.isHighlightedRed = isHighlightedRed;
-	}
-
-	public Texture getTextureTop() {
-		return textureTop;
-	}
-
-	public void setTextureTop(Texture textureTop) {
-		this.textureTop = textureTop;
-	}
-
-	public Texture getTextureSO() {
-		return textureSO;
-	}
-
-	public void setTextureSO(Texture textureSO) {
-		this.textureSO = textureSO;
-	}
-
-	public Texture getTextureNO() {
-		return textureNO;
-	}
-
-	public void setTextureNO(Texture textureNO) {
-		this.textureNO = textureNO;
-	}
-
-	public Texture getTextureNE() {
-		return textureNE;
-	}
-
-	public void setTextureNE(Texture textureNE) {
-		this.textureNE = textureNE;
-	}
-
-	public Texture getTextureSE() {
-		return textureSE;
-	}
-
-	public void setTextureSE(Texture textureSE) {
-		this.textureSE = textureSE;
-	}
-
-	public int getDeploymentZone() {
-		return deploymentZone;
-	}
-
-	public void setDeploymentZone(int deploymentZone) {
-		this.deploymentZone = deploymentZone;
-	}
-
-	public Character getCharacter() {
-		return character;
-	}
-
-	public void setCharacter(Character character) {
-		this.character = character;
-	}
-
-	public static void main(String[] argv) {
-		Tile t = new Tile(0, 5, 12, 12, TextureType.GRASS_TEXTURE,
-				tileType.DifficultGround, decorationType.Flowers3);
-		String s = t.toXMLString();
-		System.out.println(s);
-		Tile t2 = new Tile(s);
-		String s2 = t2.toXMLString();
-		System.out.println(s2);
 	}
 }
