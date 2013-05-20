@@ -13,6 +13,15 @@ public class PrimaryCharacteristics {
 	private int agility;
 	private int movement;
 
+	public PrimaryCharacteristics() {
+		this.setStrength(0);
+		this.setEndurance(0);
+		this.setIntelligence(0);
+		this.setWill(0);
+		this.setAgility(0);
+		this.setMovement(0);
+	}
+	
 	public PrimaryCharacteristics(int strength, int endurance, int intelligence,
 			int will, int agility, int movement) {
 		this.setStrength(strength);
