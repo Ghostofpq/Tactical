@@ -25,25 +25,46 @@ public class SecondaryCharacteristics {
 	private float precision;
 	private float resilience;
 
+	public SecondaryCharacteristics() {
+		this.attackDamage = 0;
+		this.magicalDamage = 0;
+		this.armor = 0;
+		this.magicResist = 0;
+
+		this.escape = 0;
+		this.criticalStrike = 0;
+		this.precision = 0;
+		this.resilience = 0;
+
+		this.armorPenetration = 0;
+		this.magicPenetration = 0;
+		this.speed = 0;
+		this.lifeRegeneration = 0;
+		this.manaRegeneration = 0;
+	}
+
 	public SecondaryCharacteristics(int attackDamage, int magicalDamage,
 			int armor, int magicResist, int armorPenetration,
 			int magicPenetration, int speed, int lifeRegeneration,
 			int manaRegeneration, float escape, float criticalStrike,
 			float precision, float resilience) {
 		super();
+
 		this.attackDamage = attackDamage;
 		this.magicalDamage = magicalDamage;
 		this.armor = armor;
 		this.magicResist = magicResist;
+
+		this.escape = escape;
+		this.criticalStrike = criticalStrike;
+		this.precision = precision;
+		this.resilience = resilience;
+
 		this.armorPenetration = armorPenetration;
 		this.magicPenetration = magicPenetration;
 		this.speed = speed;
 		this.lifeRegeneration = lifeRegeneration;
 		this.manaRegeneration = manaRegeneration;
-		this.escape = escape;
-		this.criticalStrike = criticalStrike;
-		this.precision = precision;
-		this.resilience = resilience;
 	}
 
 	public SecondaryCharacteristics(PrimaryCharacteristics caracteristics) {
@@ -51,16 +72,19 @@ public class SecondaryCharacteristics {
 		this.magicalDamage = caracteristics.getIntelligence();
 		this.armor = caracteristics.getEndurance();
 		this.magicResist = caracteristics.getWill();
+
+		this.escape = caracteristics.getAgility() / 1000;
+		this.precision = caracteristics.getAgility() / 1000;
+		this.resilience = Math.max(caracteristics.getEndurance(),
+				caracteristics.getWill()) / 1000;
+		this.criticalStrike = Math.max(caracteristics.getStrength(),
+				caracteristics.getIntelligence()) / 1000;
+
 		this.armorPenetration = 0;
 		this.magicPenetration = 0;
 		this.speed = 0;
 		this.lifeRegeneration = 0;
 		this.manaRegeneration = 0;
-		this.escape = caracteristics.getAgility() / 1000;
-		this.criticalStrike = caracteristics.getStrength() / 1000;
-		this.precision = caracteristics.getAgility() / 1000;
-		this.resilience = (caracteristics.getWill() / 1000)
-				+ (caracteristics.getEndurance() / 1000);
 	}
 
 	public void plus(SecondaryCharacteristics secondaryCharacteristics) {
@@ -71,6 +95,15 @@ public class SecondaryCharacteristics {
 		this.setArmor(this.getArmor() + secondaryCharacteristics.getArmor());
 		this.setMagicResist(this.getMagicResist()
 				+ secondaryCharacteristics.getMagicResist());
+
+		this.setEscape(this.getEscape() + secondaryCharacteristics.getEscape());
+		this.setCriticalStrike(this.getCriticalStrike()
+				+ secondaryCharacteristics.getCriticalStrike());
+		this.setPrecision(this.getPrecision()
+				+ secondaryCharacteristics.getPrecision());
+		this.setResilience(this.getResilience()
+				+ secondaryCharacteristics.getResilience());
+
 		this.setArmorPenetration(this.getArmorPenetration()
 				+ secondaryCharacteristics.getArmorPenetration());
 		this.setMagicPenetration(this.getMagicPenetration()
@@ -80,12 +113,5 @@ public class SecondaryCharacteristics {
 				+ secondaryCharacteristics.getLifeRegeneration());
 		this.setManaRegeneration(this.getManaRegeneration()
 				+ secondaryCharacteristics.getManaRegeneration());
-		this.setEscape(this.getEscape() + secondaryCharacteristics.getEscape());
-		this.setCriticalStrike(this.getCriticalStrike()
-				+ secondaryCharacteristics.getCriticalStrike());
-		this.setPrecision(this.getPrecision()
-				+ secondaryCharacteristics.getPrecision());
-		this.setResilience(this.getResilience()
-				+ secondaryCharacteristics.getResilience());
 	}
 }
