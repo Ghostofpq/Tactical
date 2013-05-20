@@ -6,6 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PrimaryCharacteristics {
+	public enum PrimaryCharacteristicsField {
+		STRENGHT, ENDURANCE, INTELLIGENCE, WILL, AGILITY, MOVEMENT
+	}
+
 	private int strength;
 	private int endurance;
 	private int intelligence;
@@ -21,9 +25,9 @@ public class PrimaryCharacteristics {
 		this.setAgility(0);
 		this.setMovement(0);
 	}
-	
-	public PrimaryCharacteristics(int strength, int endurance, int intelligence,
-			int will, int agility, int movement) {
+
+	public PrimaryCharacteristics(int strength, int endurance,
+			int intelligence, int will, int agility, int movement) {
 		this.setStrength(strength);
 		this.setEndurance(endurance);
 		this.setIntelligence(intelligence);
