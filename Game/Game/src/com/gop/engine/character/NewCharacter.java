@@ -15,7 +15,6 @@ import com.gop.engine.race.T_Race.E_Race;
  * -its identity with a name, a background story, a race and a gender <br/>
  * -its evolution with level, experience and next level cap <br/>
  * -its learnings through different job paths <br/>
- * 
  * -its data descriptions via characteristics, life and mana points <br/>
  * 
  * @author GhostOfPQ
@@ -26,6 +25,9 @@ import com.gop.engine.race.T_Race.E_Race;
 public class NewCharacter {
 
 	// Identity
+	/**
+	 * Male or Female
+	 */
 	public enum Gender {
 		FEMALE, MALE
 	}
@@ -42,7 +44,6 @@ public class NewCharacter {
 	 * {@link Gender}
 	 */
 	private Gender gender;
-
 	/**
 	 * Background story of the character
 	 */

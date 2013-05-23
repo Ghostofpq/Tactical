@@ -8,6 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class T_Capacity {
+	public enum E_CapacityType {
+		AMELIORATION, MOVE
+	}
+
 	protected String name;
 	protected String description;
 	protected E_CapacityType type;

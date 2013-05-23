@@ -3,14 +3,18 @@ package com.gop.engine.job;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gop.engine.characteristics.PrimaryCharacteristics;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 @Getter
 @Setter
 public abstract class T_Job {
+
+	public enum E_Job {
+		WARRIOR
+	}
 
 	private String name;
 	private String description;

@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.gop.engine.job.E_Job;
+import com.gop.engine.job.T_Job.E_Job;
 import com.gop.engine.race.T_Race.E_Race;
 
 @Getter

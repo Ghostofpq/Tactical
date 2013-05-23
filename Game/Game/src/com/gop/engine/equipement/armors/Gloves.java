@@ -2,7 +2,7 @@ package com.gop.engine.equipement.armors;
 
 import java.util.List;
 
-import com.gop.engine.job.E_Job;
+import com.gop.engine.job.T_Job.E_Job;
 import com.gop.engine.race.T_Race.E_Race;
 
 public class Gloves extends ArmorSet {
