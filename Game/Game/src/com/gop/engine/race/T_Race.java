@@ -1,13 +1,17 @@
 package com.gop.engine.race;
 
-import com.gop.engine.characteristics.PrimaryCharacteristics;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 @Getter
 @Setter
 public abstract class T_Race {
+	public enum E_Race {
+		ELVE, DWARF, HUMAN
+	}
+
 	private E_Race race;
 	private PrimaryCharacteristics baseCaracteristics;
 	private PrimaryCharacteristics levelUpCaracteristics;

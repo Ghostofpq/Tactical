@@ -7,8 +7,8 @@ import com.gop.engine.characteristics.PrimaryCharacteristics;
 import com.gop.engine.characteristics.SecondaryCharacteristics;
 import com.gop.engine.job.T_Job;
 import com.gop.engine.job.Warrior;
-import com.gop.engine.race.E_Race;
 import com.gop.engine.race.T_Race;
+import com.gop.engine.race.T_Race.E_Race;
 
 /**
  * Representation of a character. It determines <br/>

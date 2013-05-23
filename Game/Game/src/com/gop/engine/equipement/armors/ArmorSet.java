@@ -8,7 +8,7 @@ import lombok.Setter;
 import com.gop.engine.equipement.E_Item_Type;
 import com.gop.engine.equipement.EquipableItem;
 import com.gop.engine.job.E_Job;
-import com.gop.engine.race.E_Race;
+import com.gop.engine.race.T_Race.E_Race;
 
 @Getter
 @Setter

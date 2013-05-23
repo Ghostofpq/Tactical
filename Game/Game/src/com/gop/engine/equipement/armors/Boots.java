@@ -3,7 +3,7 @@ package com.gop.engine.equipement.armors;
 import java.util.List;
 
 import com.gop.engine.job.E_Job;
-import com.gop.engine.race.E_Race;
+import com.gop.engine.race.T_Race.E_Race;
 
 public class Boots extends ArmorSet {
 

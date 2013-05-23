@@ -3,7 +3,7 @@ package com.gop.graphics;
 import com.gop.engine.character.Character.CharState;
 import com.gop.engine.character.NewCharacter.Gender;
 import com.gop.engine.character.job.Job.jobList;
-import com.gop.engine.race.E_Race;
+import com.gop.engine.race.T_Race.E_Race;
 import com.gop.graphics.GameboardRender.viewPoint;
 
 public class CharAnimationBible {

@@ -9,7 +9,7 @@ import com.gop.engine.character.NewCharacter;
 import com.gop.engine.character.NewCharacter.Gender;
 import com.gop.engine.character.capacities.BasicAttack;
 import com.gop.engine.character.capacities.Range;
-import com.gop.engine.race.E_Race;
+import com.gop.engine.race.T_Race.E_Race;
 import com.gop.graphics.DisplayManager;
 import com.gop.graphics.GameboardRender.viewPoint;
 
