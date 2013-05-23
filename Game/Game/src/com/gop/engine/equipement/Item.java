@@ -6,6 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Item {
+	public enum E_Item_Type {
+		WEAPON, ARMOR, CONSUMABLE
+	}
+
 	private Equipement equipement;
 
 	private String name;

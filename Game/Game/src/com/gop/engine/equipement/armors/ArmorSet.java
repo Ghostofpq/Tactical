@@ -5,7 +5,6 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.gop.engine.equipement.E_Item_Type;
 import com.gop.engine.equipement.EquipableItem;
 import com.gop.engine.job.E_Job;
 import com.gop.engine.race.T_Race.E_Race;
@@ -13,6 +12,9 @@ import com.gop.engine.race.T_Race.E_Race;
 @Getter
 @Setter
 public abstract class ArmorSet extends EquipableItem {
+	public enum E_Armor_Type {
+		GLOVES, HELM, ARMOR, SHIELD, BOOTS
+	}
 
 	private E_Armor_Type armorType;
 
