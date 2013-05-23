@@ -464,6 +464,9 @@ public class Game {
 				if (!target.isDead()) {
 					BasicAttack.Activate(currentChar, target);
 					currentChar.setHasAttacked(true);
+					currentChar.getNewCharacter().gainXp(10);
+					currentChar.getNewCharacter().gainJobpoints(10);
+					
 					cursor.focusOn(currentChar.getCurrentTileX(),
 							currentChar.getCurrentTileY());
 					UpdateCursor();

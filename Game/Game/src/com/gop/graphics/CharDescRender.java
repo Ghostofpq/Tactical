@@ -19,6 +19,7 @@ public class CharDescRender {
 			RenderRace(Xdep, Ydep + 25f);
 			RenderLvl(Xdep, Ydep + 50f);
 			RenderJob(Xdep, Ydep + 75f);
+			RenderXPandJobPoins(Xdep, Ydep + 100f);
 		}
 	}
 
@@ -48,6 +49,17 @@ public class CharDescRender {
 		Color.white.bind();
 		font.drawString(X, Y, currentChar.getNewCharacter().getCurrentJob()
 				.getName(), Color.white);
+	}
+
+	public void RenderXPandJobPoins(float X, float Y) {
+		Color.white.bind();
+		font.drawString(X, Y,
+				currentChar.getNewCharacter().getExperience()
+						+ "/"
+						+ currentChar.getNewCharacter().getNextLevel()
+						+ "   "
+						+ +currentChar.getNewCharacter().getCurrentJob()
+								.getJobPoints(), Color.white);
 	}
 
 	public void setXdep(float xdep) {

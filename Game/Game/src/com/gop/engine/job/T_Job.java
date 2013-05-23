@@ -58,8 +58,13 @@ public abstract class T_Job {
 		}
 	}
 
+	public void gainJobPoints(int jobPoints) {
+		this.jobPoints += jobPoints;
+	}
+
 	public PrimaryCharacteristics getAggregatedCaracteristics() {
-		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0, 0, 0);
+		PrimaryCharacteristics result = new PrimaryCharacteristics(0, 0, 0, 0,
+				0, 0);
 
 		for (Amelioration amelioration : unlockedAmeliorations) {
 			result.plus(amelioration.getCaracteristics());

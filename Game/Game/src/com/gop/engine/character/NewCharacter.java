@@ -80,8 +80,8 @@ public class NewCharacter {
 	 */
 	private PrimaryCharacteristics aggregatedCharacteristics;
 	/**
-	 * Aggregated {@link SecondaryCharacteristics} of the character (with job and
-	 * equipement)
+	 * Aggregated {@link SecondaryCharacteristics} of the character (with job
+	 * and equipement)
 	 */
 	private SecondaryCharacteristics aggregatedSecondaryCharacteristics;
 
@@ -122,16 +122,16 @@ public class NewCharacter {
 				.getBaseCaracteristics();
 		this.aggregatedCharacteristics = new PrimaryCharacteristics(0, 0, 0, 0,
 				0, 0);
-		
 
 		updateLifeAndManaPoint();
 	}
 
 	public void gainXp(double experience) {
 		this.experience += experience;
-		while (canLevelUp()) {
-			levelUp();
-		}
+	}
+
+	public void gainJobpoints(int jobPoints) {
+		this.currentJob.gainJobPoints(jobPoints);
 	}
 
 	private boolean canLevelUp() {
