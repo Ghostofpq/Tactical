@@ -6,19 +6,24 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.gop.engine.character.Character.CharState;
-import com.gop.engine.character.Identity.Gender;
+import com.gop.engine.character.NewCharacter.Gender;
 import com.gop.engine.character.job.Job.jobList;
 import com.gop.engine.race.E_Race;
 import com.gop.graphics.GameboardRender.viewPoint;
 
 public class CharAnimation extends Animation {
 
-	public CharAnimation(viewPoint vp, jobList job, E_Race race, Gender gen, CharState state) {
-		String path = super.basicPath + (race.toString() + "/" + gen.toString() + "/" + job.toString() + "/" + state.toString() + "/" + vp.toString());
+	public CharAnimation(viewPoint vp, jobList job, E_Race race, Gender gen,
+			CharState state) {
+		String path = super.basicPath
+				+ (race.toString() + "/" + gen.toString() + "/"
+						+ job.toString() + "/" + state.toString() + "/" + vp
+							.toString());
 		this.speed = 0;
 		this.count = 0;
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(path + "desc.txt"));
+			BufferedReader in = new BufferedReader(new FileReader(path
+					+ "desc.txt"));
 			String save = "";
 			String buff = in.readLine();
 			while (buff != null) {

@@ -29,14 +29,14 @@ public class CharDescRender {
 
 	public void RenderName(float X, float Y) {
 		Color.white.bind();
-		font.drawString(X, Y, currentChar.getNewCharacter().getIdentity()
-				.getName(), Color.white);
+		font.drawString(X, Y, currentChar.getNewCharacter().getName(),
+				Color.white);
 	}
 
 	public void RenderRace(float X, float Y) {
 		Color.white.bind();
-		font.drawString(X, Y, currentChar.getNewCharacter().getIdentity()
-				.getRace().getName(), Color.white);
+		font.drawString(X, Y,
+				currentChar.getNewCharacter().getRace().getName(), Color.white);
 	}
 
 	public void RenderLvl(float X, float Y) {
