@@ -1,11 +1,15 @@
 package com.gop.engine.characteristics;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SecondaryCharacteristics {
+public class SecondaryCharacteristics implements Serializable {
+
+	private static final long serialVersionUID = -2135901452592205936L;
 
 	public enum SecondaryCharacteristicsField {
 		ATTACK_DAMAGE, MAGICAL_DAMAGE, ARMOR, MAGIC_RESIST, SPEED, LIFE_REGENERATION, MANA_REGENERATION, ESCAPE, CRITICAL_STRIKE, PRECISION, RESILIENCE;

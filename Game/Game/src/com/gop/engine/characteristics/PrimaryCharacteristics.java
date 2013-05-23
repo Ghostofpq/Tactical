@@ -1,11 +1,16 @@
 package com.gop.engine.characteristics;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PrimaryCharacteristics {
+public class PrimaryCharacteristics implements Serializable {
+
+	private static final long serialVersionUID = 6681761667504505940L;
+
 	public enum PrimaryCharacteristicsField {
 		STRENGHT, ENDURANCE, INTELLIGENCE, WILL, AGILITY, MOVEMENT
 	}
