@@ -19,7 +19,7 @@ public class Character {
 		Walking, Standing, Hitting, Casting, TakingDmg, Wounded, Dead
 	}
 
-	private NewCharacter newCharacter;
+	private CharacterData newCharacter;
 
 	private float posX;
 	private float posY;
@@ -54,7 +54,7 @@ public class Character {
 	private boolean hasMoved;
 	private boolean hasAttacked;
 
-	public Character(NewCharacter newCharacter) {
+	public Character(CharacterData newCharacter) {
 		this.newCharacter = newCharacter;
 
 		this.currentAnimation = null;

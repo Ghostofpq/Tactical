@@ -5,8 +5,8 @@ import org.newdawn.slick.util.Log;
 
 import com.gop.engine.InputManager.actions;
 import com.gop.engine.character.Character;
-import com.gop.engine.character.NewCharacter;
-import com.gop.engine.character.NewCharacter.Gender;
+import com.gop.engine.character.CharacterData;
+import com.gop.engine.character.CharacterData.Gender;
 import com.gop.engine.character.capacities.BasicAttack;
 import com.gop.engine.character.capacities.Range;
 import com.gop.engine.race.T_Race.E_Race;
@@ -599,18 +599,18 @@ public class Game {
 		 * (FileNotFoundException ex) { ex.printStackTrace(); } catch
 		 * (IOException ex) { ex.printStackTrace(); }
 		 */
-		NewCharacter nc1 = new NewCharacter("Bobyx", E_Race.HUMAN, Gender.MALE);
+		CharacterData nc1 = new CharacterData("Bobyx", E_Race.HUMAN, Gender.MALE);
 		Character c1 = new Character(nc1);
-		NewCharacter nc2 = new NewCharacter("Bobyx2", E_Race.DWARF, Gender.MALE);
+		CharacterData nc2 = new CharacterData("Bobyx2", E_Race.DWARF, Gender.MALE);
 		Character c2 = new Character(nc2);
 
-		NewCharacter nc3 = new NewCharacter("Bobixou1", E_Race.DWARF,
+		CharacterData nc3 = new CharacterData("Bobixou1", E_Race.DWARF,
 				Gender.MALE);
 		Character c3 = new Character(nc3);
-		NewCharacter nc4 = new NewCharacter("Bobixou2", E_Race.ELVE,
+		CharacterData nc4 = new CharacterData("Bobixou2", E_Race.ELVE,
 				Gender.MALE);
 		Character c4 = new Character(nc4);
-		NewCharacter nc5 = new NewCharacter("Bobixou3", E_Race.HUMAN,
+		CharacterData nc5 = new CharacterData("Bobixou3", E_Race.HUMAN,
 				Gender.MALE);
 		Character c5 = new Character(nc5);
 

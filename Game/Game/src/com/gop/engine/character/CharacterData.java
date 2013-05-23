@@ -22,7 +22,7 @@ import com.gop.engine.race.T_Race.E_Race;
  */
 @Getter
 @Setter
-public class NewCharacter {
+public class CharacterData {
 
 	// Identity
 	/**
@@ -117,7 +117,7 @@ public class NewCharacter {
 	 * @param gender
 	 *            {@link Gender} of the character
 	 */
-	public NewCharacter(String name, E_Race race, Gender gender) {
+	public CharacterData(String name, E_Race race, Gender gender) {
 		// Identity
 		this.name = name;
 		this.race = T_Race.Race(race);

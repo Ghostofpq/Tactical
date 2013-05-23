@@ -38,6 +38,10 @@ public abstract class T_Job {
 		this.unlockedAmeliorations = new ArrayList<Amelioration>();
 	}
 
+	public void gainJobPoints(int jobPoints) {
+		this.jobPoints += jobPoints;
+	}
+
 	public boolean canUnlockCapacity(T_Capacity capacity) {
 		if (capacity.isAvailable() && this.jobPoints >= capacity.getPrice()
 				&& !capacity.isLocked()) {
@@ -60,10 +64,6 @@ public abstract class T_Job {
 				break;
 			}
 		}
-	}
-
-	public void gainJobPoints(int jobPoints) {
-		this.jobPoints += jobPoints;
 	}
 
 	public PrimaryCharacteristics getAggregatedCaracteristics() {
