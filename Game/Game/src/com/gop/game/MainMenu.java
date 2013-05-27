@@ -1,5 +1,11 @@
 package com.gop.game;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -8,16 +14,35 @@ public class MainMenu extends JFrame {
 
 	private static final long serialVersionUID = -3240976908707553886L;
 
-	public MainMenu() {
+	List<String> players = new ArrayList<String>();
+
+	public MainMenu() throws IOException {
 		this.setSize(1000, 800);
-		this.setTitle("Main Menu");
+		this.setTitle("Throne of Seltyr");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
+
+		this.checkFolderForPlayers();
 
 		this.setVisible(true);
 	}
 
-	public static void main(String[] argv) {
+	public boolean createPlayer(String playerName) throws IOException {
+		File gameFile = new File("C:/Users/vmpx4526/AppData/Roaming/TOS/"
+				+ playerName);
+		return gameFile.createNewFile();
+	}
+
+	public void checkFolderForPlayers() throws IOException {
+		File gameFile = new File("C:/Users/vmpx4526/AppData/Roaming/TOS");
+		if (!gameFile.exists()) {
+			gameFile.mkdir();
+		} else {
+			players = Arrays.asList(gameFile.list());
+		}
+	}
+
+	public static void main(String[] argv) throws IOException {
 
 		try {
 			// Set cross-platform Java L&F (also called "Metal")
