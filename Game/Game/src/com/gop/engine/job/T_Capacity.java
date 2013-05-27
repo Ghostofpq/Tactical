@@ -1,5 +1,6 @@
 package com.gop.engine.job;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.Getter;
@@ -7,7 +8,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class T_Capacity {
+public abstract class T_Capacity implements Serializable {
+
+	private static final long serialVersionUID = 6338786566341517746L;
+
 	public enum E_CapacityType {
 		AMELIORATION, MOVE
 	}

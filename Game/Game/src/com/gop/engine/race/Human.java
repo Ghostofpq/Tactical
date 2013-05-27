@@ -3,6 +3,9 @@ package com.gop.engine.race;
 import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 public class Human extends T_Race {
+
+	private static final long serialVersionUID = -1782671271505630783L;
+	
 	private final String HUMAN_NAME = "Human";
 	private final String HUMAN_DESCRIPTION = "blablablabla HUMANZZZZ!!";
 

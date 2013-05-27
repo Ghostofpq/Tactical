@@ -3,6 +3,9 @@ package com.gop.engine.race;
 import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 public class Elve extends T_Race {
+	
+	private static final long serialVersionUID = -6963245902545834866L;
+
 	private final String ELVE_NAME = "Human";
 	private final String ELVE_DESCRIPTION = "blablablabla ELVEZZZZ!!";
 
@@ -24,11 +27,12 @@ public class Elve extends T_Race {
 		this.setName(ELVE_NAME);
 		this.setDescription(ELVE_DESCRIPTION);
 		this.setRace(E_Race.ELVE);
-		this.setBaseCaracteristics(new PrimaryCharacteristics(ELVE_BASE_STRENGTH,
-				ELVE_BASE_ENDURANCE, ELVE_BASE_INTELLIGENCE, ELVE_BASE_WILL,
-				ELVE_BASE_AGILITY, ELVE_BASE_MOVEMENT));
-		this.setLevelUpCaracteristics(new PrimaryCharacteristics(ELVE_LVL_STRENGTH,
-				ELVE_LVL_ENDURANCE, ELVE_LVL_INTELLIGENCE, ELVE_LVL_WILL,
-				ELVE_LVL_AGILITY, ELVE_LVL_MOVEMENT));
+		this.setBaseCaracteristics(new PrimaryCharacteristics(
+				ELVE_BASE_STRENGTH, ELVE_BASE_ENDURANCE,
+				ELVE_BASE_INTELLIGENCE, ELVE_BASE_WILL, ELVE_BASE_AGILITY,
+				ELVE_BASE_MOVEMENT));
+		this.setLevelUpCaracteristics(new PrimaryCharacteristics(
+				ELVE_LVL_STRENGTH, ELVE_LVL_ENDURANCE, ELVE_LVL_INTELLIGENCE,
+				ELVE_LVL_WILL, ELVE_LVL_AGILITY, ELVE_LVL_MOVEMENT));
 	}
 }

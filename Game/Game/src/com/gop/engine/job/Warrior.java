@@ -7,6 +7,8 @@ import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 public class Warrior extends T_Job {
 
+	private static final long serialVersionUID = 2620023619865757113L;
+
 	private final static String WARRIOR_NAME = "Warrior";
 	private final static String WARRIOR_DESC = "Warriors are stronk";
 
@@ -19,31 +21,37 @@ public class Warrior extends T_Job {
 	private void prepareSkillTree() {
 		List<T_Capacity> skillTree = new ArrayList<T_Capacity>();
 
-		PrimaryCharacteristics strength1C = new PrimaryCharacteristics(5, 0, 0, 0, 0,0);
+		PrimaryCharacteristics strength1C = new PrimaryCharacteristics(5, 0, 0,
+				0, 0, 0);
 		Amelioration strength1 = new Amelioration("strength1",
 				"strength1 desc", strength1C, 50);
 		skillTree.add(strength1);
 
-		PrimaryCharacteristics strength2C = new PrimaryCharacteristics(10, 0, 0, 0, 0,0);
+		PrimaryCharacteristics strength2C = new PrimaryCharacteristics(10, 0,
+				0, 0, 0, 0);
 		Amelioration strength2 = new Amelioration("strength2",
 				"strength2 desc", strength2C, 150);
 		skillTree.add(strength2);
 
-		PrimaryCharacteristics strength3C = new PrimaryCharacteristics(20, 0, 0, 0, 0,0);
+		PrimaryCharacteristics strength3C = new PrimaryCharacteristics(20, 0,
+				0, 0, 0, 0);
 		Amelioration strength3 = new Amelioration("strength3",
 				"strength3 desc", strength3C, 500);
 		skillTree.add(strength3);
 
-		PrimaryCharacteristics endurance1C = new PrimaryCharacteristics(0, 5, 0, 0, 0,0);
+		PrimaryCharacteristics endurance1C = new PrimaryCharacteristics(0, 5,
+				0, 0, 0, 0);
 		Amelioration endurance1 = new Amelioration("endurance1",
 				"endurance1 desc", endurance1C, 50);
 		skillTree.add(endurance1);
 
-		PrimaryCharacteristics endurance2C = new PrimaryCharacteristics(0, 10, 0, 0, 0,0);
+		PrimaryCharacteristics endurance2C = new PrimaryCharacteristics(0, 10,
+				0, 0, 0, 0);
 		Amelioration endurance2 = new Amelioration("endurance2",
 				"endurance2 desc", endurance2C, 150);
 		skillTree.add(endurance2);
-		PrimaryCharacteristics endurance3C = new PrimaryCharacteristics(0, 20, 0, 0, 0,0);
+		PrimaryCharacteristics endurance3C = new PrimaryCharacteristics(0, 20,
+				0, 0, 0, 0);
 		Amelioration endurance3 = new Amelioration("endurance3",
 				"endurance3 desc", endurance3C, 500);
 		skillTree.add(endurance3);

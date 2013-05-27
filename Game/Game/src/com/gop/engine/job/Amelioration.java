@@ -11,6 +11,8 @@ import com.gop.engine.characteristics.PrimaryCharacteristics;
 @Setter
 public class Amelioration extends T_Capacity {
 
+	private static final long serialVersionUID = -7036564291741868266L;
+	
 	private PrimaryCharacteristics caracteristics;
 
 	public Amelioration(String name, String description,

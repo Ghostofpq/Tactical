@@ -1,5 +1,6 @@
 package com.gop.engine.job;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,9 @@ import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 @Getter
 @Setter
-public abstract class T_Job {
+public abstract class T_Job implements Serializable {
+
+	private static final long serialVersionUID = 7613901055857944135L;
 
 	public enum E_Job {
 		WARRIOR

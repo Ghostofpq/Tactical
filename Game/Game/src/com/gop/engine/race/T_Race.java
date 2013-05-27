@@ -1,5 +1,7 @@
 package com.gop.engine.race;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +9,10 @@ import com.gop.engine.characteristics.PrimaryCharacteristics;
 
 @Getter
 @Setter
-public abstract class T_Race {
+public abstract class T_Race implements Serializable {
+
+	private static final long serialVersionUID = -3933914420338387526L;
+
 	public enum E_Race {
 		ELVE, DWARF, HUMAN
 	}

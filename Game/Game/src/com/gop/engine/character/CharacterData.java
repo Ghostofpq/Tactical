@@ -1,5 +1,7 @@
 package com.gop.engine.character;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +24,9 @@ import com.gop.engine.race.T_Race.E_Race;
  */
 @Getter
 @Setter
-public class CharacterData {
+public class CharacterData implements Serializable {
+
+	private static final long serialVersionUID = -525866701627358223L;
 
 	// Identity
 	/**

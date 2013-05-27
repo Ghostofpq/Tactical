@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class Move extends T_Capacity {
 
+	private static final long serialVersionUID = 768372563773451676L;
+
 	public Move(String name, String description, int price) {
 		this.prerequisites = new ArrayList<T_Capacity>();
 
