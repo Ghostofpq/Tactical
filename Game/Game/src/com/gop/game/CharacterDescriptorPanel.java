@@ -1,9 +1,13 @@
 package com.gop.game;
 
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,23 +25,70 @@ public class CharacterDescriptorPanel extends JPanel {
 
 	private ICharacterDescriptor characterDescriptor;
 
+	private JPanel panelGlobalDescription;
+
 	private JPanel panelIdentity;
 	private JLabel labelIdentityName;
 	private JLabel labelIdentityGender;
 	private JLabel labelIdentityRace;
 
-	public CharacterDescriptorPanel(ICharacterDescriptor characterDescriptor) {
+	private JPanel panelHPMPAndXP;
+
+	private JPanel panelHPAndMP;
+	private JLabel labelHP;
+	private JLabel labelMP;
+
+	private JPanel panelXP;
+	private JLabel labelLvL;
+	private JLabel labelXP;
+
+	private JPanel panelJob;
+	private JLabel labelCurrentJob;
+	private JLabel labelCurrentJobJobPoints;
+
+	private JPanel panelPortrait;
+	private JLabel labelPortrait;
+	private BufferedImage portrait;
+
+	private final int GLOBAL_DESCRIPTION_PANEL_WIDTH = 400;
+	private final int GLOBAL_DESCRIPTION_PANEL_HEIGTH = 300;
+
+	public CharacterDescriptorPanel(ICharacterDescriptor characterDescriptor)
+			throws IOException {
 		this.characterDescriptor = characterDescriptor;
 		createElements();
-		preparePanelIdentity();
+		preparePanelGlobalDescription();
+		preparePanelPortrait();
+
+		this.add(panelPortrait);
+		this.add(panelGlobalDescription);
+
 	}
 
-	private void createElements() {
+	private void createElements() throws IOException {
 		panelIdentity = new JPanel();
 		labelIdentityName = new JLabel();
 		labelIdentityGender = new JLabel();
 		labelIdentityRace = new JLabel();
 
+		panelHPAndMP = new JPanel();
+		labelHP = new JLabel();
+		labelMP = new JLabel();
+
+		panelXP = new JPanel();
+		labelLvL = new JLabel();
+		labelXP = new JLabel();
+
+		panelHPMPAndXP = new JPanel();
+
+		panelGlobalDescription = new JPanel();
+
+		panelJob = new JPanel();
+		labelCurrentJob = new JLabel();
+		labelCurrentJobJobPoints = new JLabel();
+
+		panelPortrait = new JPanel();
+		labelPortrait = new JLabel();
 	}
 
 	private void preparePanelIdentity() {
@@ -51,7 +102,80 @@ public class CharacterDescriptorPanel extends JPanel {
 		panelIdentity.add(labelIdentityName);
 		panelIdentity.add(labelIdentityGender);
 		panelIdentity.add(labelIdentityRace);
-		this.add(panelIdentity);
+	}
+
+	private void preparePanelHPMPAndXP() {
+		GridLayout layoutHPMPAndXP = new GridLayout(1, 2);
+		panelHPMPAndXP.setLayout(layoutHPMPAndXP);
+		panelHPMPAndXP.setBorder(BorderFactory
+				.createTitledBorder("State Info :"));
+		preparePanelXP();
+		preparePanelHPAndMP();
+
+		panelHPMPAndXP.add(panelHPAndMP);
+		panelHPMPAndXP.add(panelXP);
+
+	}
+
+	private void preparePanelHPAndMP() {
+		GridLayout layoutHPAndMP = new GridLayout(2, 1);
+		layoutHPAndMP.setVgap(10);
+		panelHPAndMP.setLayout(layoutHPAndMP);
+
+		labelHP.setText("HP : " + characterDescriptor.getHPForDisplay());
+		labelMP.setText("MP : " + characterDescriptor.getMPForDisplay());
+
+		panelHPAndMP.add(labelHP);
+		panelHPAndMP.add(labelMP);
+	}
+
+	private void preparePanelXP() {
+		GridLayout layoutXP = new GridLayout(2, 1);
+		layoutXP.setVgap(10);
+		panelXP.setLayout(layoutXP);
+
+		labelLvL.setText("LVL." + characterDescriptor.getLevelForDisplay());
+		labelXP.setText(characterDescriptor.getCurrentXpForDisplay() + "/"
+				+ characterDescriptor.getXpNextLvl());
+
+		panelXP.add(labelLvL);
+		panelXP.add(labelXP);
+	}
+
+	private void preparePanelJob() {
+		panelJob.setLayout(new GridLayout(1, 2));
+		panelJob.setBorder(BorderFactory.createTitledBorder("Job :"));
+
+		labelCurrentJob.setText(characterDescriptor.getCurrentJobForDisplay());
+		labelCurrentJobJobPoints.setText("JP : "
+				+ characterDescriptor.getCurrentJobJobPointsForDisplay());
+
+		panelJob.add(labelCurrentJob);
+		panelJob.add(labelCurrentJobJobPoints);
+	}
+
+	private void preparePanelGlobalDescription() {
+		panelGlobalDescription.setLayout(new GridLayout(3, 1));
+		panelGlobalDescription.setBorder(BorderFactory.createEtchedBorder());
+
+		preparePanelIdentity();
+		preparePanelHPMPAndXP();
+		preparePanelJob();
+
+		panelGlobalDescription.add(panelIdentity);
+		panelGlobalDescription.add(panelHPMPAndXP);
+		panelGlobalDescription.add(panelJob);
+
+	}
+
+	private void preparePanelPortrait() throws IOException {
+		panelPortrait.setBorder(BorderFactory.createEtchedBorder());
+
+		portrait = ImageIO.read(new File(characterDescriptor
+				.getPathForPortrait()));
+		labelPortrait = new JLabel(new ImageIcon(portrait));
+
+		panelPortrait.add(labelPortrait);
 	}
 
 	public static void main(String[] argv) throws IOException,
@@ -59,8 +183,8 @@ public class CharacterDescriptorPanel extends JPanel {
 			IllegalAccessException, UnsupportedLookAndFeelException {
 		ICharacterDescriptor characterDescriptor = new ICharacterDescriptor() {
 			@Override
-			public String getXpForDisplay() {
-				return "13540";
+			public String getCurrentXpForDisplay() {
+				return "13564654321564631540";
 			}
 
 			@Override
@@ -92,12 +216,62 @@ public class CharacterDescriptorPanel extends JPanel {
 			public String getGenderForDisplay() {
 				return "Male";
 			}
+
+			@Override
+			public String getPathForPortrait() {
+				return "C:/Users/vmpx4526/Desktop/Perso/Tactical/Game/Game/images/SquireMale.png";
+			}
+
+			@Override
+			public String getXpNextLvl() {
+				return "18697";
+			}
+
+			@Override
+			public String getStrenghtForDisplay() {
+				return "15";
+			}
+
+			@Override
+			public String getEnduranceForDisplay() {
+				return "15";
+			}
+
+			@Override
+			public String getIntelligenceForDisplay() {
+				return "15";
+			}
+
+			@Override
+			public String getWillForDisplay() {
+				return "15";
+			}
+
+			@Override
+			public String getAgilityForDisplay() {
+				return "15";
+			}
+
+			@Override
+			public String getMovementForDisplay() {
+				return "3";
+			}
+
+			@Override
+			public String getCurrentJobForDisplay() {
+				return "Warrior";
+			}
+
+			@Override
+			public String getCurrentJobJobPointsForDisplay() {
+				return "42";
+			}
 		};
 
 		UIManager.setLookAndFeel(UIManager
 				.getCrossPlatformLookAndFeelClassName());
 		JFrame frame = new JFrame();
-		frame.setSize(800, 400);
+		frame.setSize(600, 200);
 		frame.setTitle("CharacterDescriptorPanel Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
