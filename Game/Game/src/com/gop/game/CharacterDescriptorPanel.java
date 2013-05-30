@@ -1,6 +1,11 @@
 package com.gop.game;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +44,7 @@ public class CharacterDescriptorPanel extends JPanel {
 	private JLabel labelMP;
 
 	private JPanel panelXP;
+
 	private JLabel labelLvL;
 	private JLabel labelXP;
 
@@ -56,13 +62,20 @@ public class CharacterDescriptorPanel extends JPanel {
 	public CharacterDescriptorPanel(ICharacterDescriptor characterDescriptor)
 			throws IOException {
 		this.characterDescriptor = characterDescriptor;
+
 		createElements();
 		preparePanelGlobalDescription();
 		preparePanelPortrait();
 
-		this.add(panelPortrait);
-		this.add(panelGlobalDescription);
+		this.setLayout(new GridBagLayout());
+		this.setBorder(BorderFactory.createEtchedBorder());
 
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.VERTICAL;
+		this.add(panelPortrait, c);
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		this.add(panelGlobalDescription, c);
 	}
 
 	private void createElements() throws IOException {
@@ -144,7 +157,7 @@ public class CharacterDescriptorPanel extends JPanel {
 
 	private void preparePanelJob() {
 		panelJob.setLayout(new GridLayout(1, 2));
-		panelJob.setBorder(BorderFactory.createTitledBorder("Job :"));
+		panelJob.setBorder(BorderFactory.createTitledBorder("Current Job :"));
 
 		labelCurrentJob.setText(characterDescriptor.getCurrentJobForDisplay());
 		labelCurrentJobJobPoints.setText("JP : "
@@ -155,16 +168,21 @@ public class CharacterDescriptorPanel extends JPanel {
 	}
 
 	private void preparePanelGlobalDescription() {
-		panelGlobalDescription.setLayout(new GridLayout(3, 1));
+		panelGlobalDescription.setLayout(new GridBagLayout());
 		panelGlobalDescription.setBorder(BorderFactory.createEtchedBorder());
+
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.ipadx = 200;
 
 		preparePanelIdentity();
 		preparePanelHPMPAndXP();
 		preparePanelJob();
 
-		panelGlobalDescription.add(panelIdentity);
-		panelGlobalDescription.add(panelHPMPAndXP);
-		panelGlobalDescription.add(panelJob);
+		panelGlobalDescription.add(panelIdentity, c);
+		panelGlobalDescription.add(panelHPMPAndXP, c);
+		panelGlobalDescription.add(panelJob, c);
 
 	}
 
@@ -184,7 +202,7 @@ public class CharacterDescriptorPanel extends JPanel {
 		ICharacterDescriptor characterDescriptor = new ICharacterDescriptor() {
 			@Override
 			public String getCurrentXpForDisplay() {
-				return "13564654321564631540";
+				return "123456";
 			}
 
 			@Override
@@ -271,15 +289,29 @@ public class CharacterDescriptorPanel extends JPanel {
 		UIManager.setLookAndFeel(UIManager
 				.getCrossPlatformLookAndFeelClassName());
 		JFrame frame = new JFrame();
-		frame.setSize(600, 200);
+		frame.setSize(600, 800);
 		frame.setTitle("CharacterDescriptorPanel Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
-		CharacterDescriptorPanel characterDescriptorPanel = new CharacterDescriptorPanel(
-				characterDescriptor);
-		frame.add(characterDescriptorPanel);
+		JPanel testpanel = new JPanel();
+		testpanel.setLayout(new GridLayout(4, 1));
 
+		CharacterDescriptorPanel characterDescriptorPanel1 = new CharacterDescriptorPanel(
+				characterDescriptor);
+		CharacterDescriptorPanel characterDescriptorPanel2 = new CharacterDescriptorPanel(
+				characterDescriptor);
+		CharacterDescriptorPanel characterDescriptorPanel3 = new CharacterDescriptorPanel(
+				characterDescriptor);
+		CharacterDescriptorPanel characterDescriptorPanel4 = new CharacterDescriptorPanel(
+				characterDescriptor);
+
+		testpanel.add(characterDescriptorPanel1);
+		testpanel.add(characterDescriptorPanel2);
+		testpanel.add(characterDescriptorPanel3);
+		testpanel.add(characterDescriptorPanel4);
+
+		frame.add(testpanel);
 		frame.setVisible(true);
 	}
 }
