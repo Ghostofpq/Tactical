@@ -1,11 +1,8 @@
 package com.gop.game;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import com.gop.engine.character.CharacterData;
+import com.gop.engine.character.CharacterData.Gender;
+import com.gop.engine.race.T_Race.E_Race;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +35,7 @@ public class CharacterDescriptorPanel extends JPanel {
 
 	private JPanel panelIdentity;
 	private JLabel labelIdentityName;
-	private JLabel labelIdentityGender;
-	private JLabel labelIdentityRace;
+	private JLabel labelIdentityRaceAndGender;
 
 	private JPanel panelHPMPAndXP;
 
@@ -81,8 +81,7 @@ public class CharacterDescriptorPanel extends JPanel {
 	private void createElements() throws IOException {
 		panelIdentity = new JPanel();
 		labelIdentityName = new JLabel();
-		labelIdentityGender = new JLabel();
-		labelIdentityRace = new JLabel();
+		labelIdentityRaceAndGender = new JLabel();
 
 		panelHPAndMP = new JPanel();
 		labelHP = new JLabel();
@@ -105,16 +104,17 @@ public class CharacterDescriptorPanel extends JPanel {
 	}
 
 	private void preparePanelIdentity() {
-		panelIdentity.setLayout(new GridLayout(1, 3));
+		panelIdentity.setLayout(new GridLayout(1, 2));
 		panelIdentity.setBorder(BorderFactory.createTitledBorder("Identity :"));
 
 		labelIdentityName.setText(characterDescriptor.getNameForDisplay());
-		labelIdentityGender.setText(characterDescriptor.getGenderForDisplay());
-		labelIdentityRace.setText(characterDescriptor.getRaceForDisplay());
+		labelIdentityRaceAndGender.setText(characterDescriptor
+				.getRaceForDisplay()
+				+ " "
+				+ characterDescriptor.getGenderForDisplay());
 
 		panelIdentity.add(labelIdentityName);
-		panelIdentity.add(labelIdentityGender);
-		panelIdentity.add(labelIdentityRace);
+		panelIdentity.add(labelIdentityRaceAndGender);
 	}
 
 	private void preparePanelHPMPAndXP() {
@@ -199,92 +199,12 @@ public class CharacterDescriptorPanel extends JPanel {
 	public static void main(String[] argv) throws IOException,
 			ClassNotFoundException, InstantiationException,
 			IllegalAccessException, UnsupportedLookAndFeelException {
-		ICharacterDescriptor characterDescriptor = new ICharacterDescriptor() {
-			@Override
-			public String getCurrentXpForDisplay() {
-				return "123456";
-			}
-
-			@Override
-			public String getRaceForDisplay() {
-				return "HUMAN";
-			}
-
-			@Override
-			public String getNameForDisplay() {
-				return "Marcel";
-			}
-
-			@Override
-			public String getMPForDisplay() {
-				return "500";
-			}
-
-			@Override
-			public String getLevelForDisplay() {
-				return "14";
-			}
-
-			@Override
-			public String getHPForDisplay() {
-				return "150";
-			}
-
-			@Override
-			public String getGenderForDisplay() {
-				return "Male";
-			}
-
-			@Override
-			public String getPathForPortrait() {
-				return "C:/Users/vmpx4526/Desktop/Perso/Tactical/Game/Game/images/SquireMale.png";
-			}
-
-			@Override
-			public String getXpNextLvl() {
-				return "18697";
-			}
-
-			@Override
-			public String getStrenghtForDisplay() {
-				return "15";
-			}
-
-			@Override
-			public String getEnduranceForDisplay() {
-				return "15";
-			}
-
-			@Override
-			public String getIntelligenceForDisplay() {
-				return "15";
-			}
-
-			@Override
-			public String getWillForDisplay() {
-				return "15";
-			}
-
-			@Override
-			public String getAgilityForDisplay() {
-				return "15";
-			}
-
-			@Override
-			public String getMovementForDisplay() {
-				return "3";
-			}
-
-			@Override
-			public String getCurrentJobForDisplay() {
-				return "Warrior";
-			}
-
-			@Override
-			public String getCurrentJobJobPointsForDisplay() {
-				return "42";
-			}
-		};
+		CharacterData nc1 = new CharacterData("Bobyx", E_Race.HUMAN,
+				Gender.MALE);
+		CharacterData nc2 = new CharacterData("Marcel", E_Race.DWARF,
+				Gender.MALE);
+		CharacterData nc3 = new CharacterData("Bonny", E_Race.ELVE,
+				Gender.FEMALE);
 
 		UIManager.setLookAndFeel(UIManager
 				.getCrossPlatformLookAndFeelClassName());
@@ -298,13 +218,13 @@ public class CharacterDescriptorPanel extends JPanel {
 		testpanel.setLayout(new GridLayout(4, 1));
 
 		CharacterDescriptorPanel characterDescriptorPanel1 = new CharacterDescriptorPanel(
-				characterDescriptor);
+				nc1);
 		CharacterDescriptorPanel characterDescriptorPanel2 = new CharacterDescriptorPanel(
-				characterDescriptor);
+				nc2);
 		CharacterDescriptorPanel characterDescriptorPanel3 = new CharacterDescriptorPanel(
-				characterDescriptor);
+				nc3);
 		CharacterDescriptorPanel characterDescriptorPanel4 = new CharacterDescriptorPanel(
-				characterDescriptor);
+				nc1);
 
 		testpanel.add(characterDescriptorPanel1);
 		testpanel.add(characterDescriptorPanel2);

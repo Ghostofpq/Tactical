@@ -599,7 +599,8 @@ public class Game {
 		 * (FileNotFoundException ex) { ex.printStackTrace(); } catch
 		 * (IOException ex) { ex.printStackTrace(); }
 		 */
-		CharacterData nc1 = new CharacterData("Bobyx", E_Race.HUMAN, Gender.MALE);
+		CharacterData nc1 = new CharacterData("Bobyx", E_Race.HUMAN,
+				Gender.MALE);
 		Character c1 = new Character(nc1);
 		CharacterData nc2 = new CharacterData("Bobyx2", E_Race.DWARF, Gender.MALE);
 		Character c2 = new Character(nc2);

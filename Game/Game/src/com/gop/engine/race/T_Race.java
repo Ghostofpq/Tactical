@@ -14,7 +14,18 @@ public abstract class T_Race implements Serializable {
 	private static final long serialVersionUID = -3933914420338387526L;
 
 	public enum E_Race {
-		ELVE, DWARF, HUMAN
+		ELVE("Elve"), DWARF("Dwarf"), HUMAN("Human");
+
+		private final String propertyName;
+
+		E_Race(String propertyName) {
+			this.propertyName = propertyName;
+		}
+
+		@Override
+		public String toString() {
+			return propertyName;
+		}
 	}
 
 	private E_Race race;

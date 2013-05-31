@@ -11,6 +11,7 @@ import com.gop.engine.job.T_Job;
 import com.gop.engine.job.Warrior;
 import com.gop.engine.race.T_Race;
 import com.gop.engine.race.T_Race.E_Race;
+import com.gop.game.ICharacterDescriptor;
 
 /**
  * Representation of a character. It determines <br/>
@@ -24,7 +25,7 @@ import com.gop.engine.race.T_Race.E_Race;
  */
 @Getter
 @Setter
-public class CharacterData implements Serializable {
+public class CharacterData implements Serializable, ICharacterDescriptor {
 
 	private static final long serialVersionUID = -525866701627358223L;
 
@@ -33,7 +34,18 @@ public class CharacterData implements Serializable {
 	 * Male or Female
 	 */
 	public enum Gender {
-		FEMALE, MALE
+		FEMALE("\u2640"), MALE("\u2642");
+
+		private final String propertyName;
+
+		Gender(String propertyName) {
+			this.propertyName = propertyName;
+		}
+
+		@Override
+		public String toString() {
+			return propertyName;
+		}
 	}
 
 	/**
@@ -193,5 +205,94 @@ public class CharacterData implements Serializable {
 		this.aggregatedCharacteristics = this.characteristics;
 		this.aggregatedCharacteristics.plus(getBonusFromJobs());
 		this.aggregatedCharacteristics.plus(getBonusFromEquipement());
+	}
+
+	/**
+	 * Implementation de ICharacterDescriptor
+	 */
+
+	@Override
+	public String getNameForDisplay() {
+		return this.getName();
+	}
+
+	@Override
+	public String getRaceForDisplay() {
+		return this.getRace().getName();
+	}
+
+	@Override
+	public String getGenderForDisplay() {
+		return this.getGender().toString();
+	}
+
+	@Override
+	public String getHPForDisplay() {
+		return String.valueOf(this.getLifePoint());
+	}
+
+	@Override
+	public String getMPForDisplay() {
+		return String.valueOf(this.getManaPoint());
+	}
+
+	@Override
+	public String getLevelForDisplay() {
+		return String.valueOf(this.getLevel());
+	}
+
+	@Override
+	public String getCurrentXpForDisplay() {
+		return String.valueOf(this.getExperience());
+	}
+
+	@Override
+	public String getXpNextLvl() {
+		return String.valueOf(this.getNextLevel());
+	}
+
+	@Override
+	public String getPathForPortrait() {
+		return "C:/Users/vmpx4526/Desktop/Perso/Tactical/Game/Game/images/SquireMale.png";
+	}
+
+	@Override
+	public String getStrenghtForDisplay() {
+		return String.valueOf(this.getCharacteristics().getStrength());
+	}
+
+	@Override
+	public String getEnduranceForDisplay() {
+		return String.valueOf(this.getCharacteristics().getEndurance());
+	}
+
+	@Override
+	public String getIntelligenceForDisplay() {
+		return String.valueOf(this.getCharacteristics().getIntelligence());
+	}
+
+	@Override
+	public String getWillForDisplay() {
+		return String.valueOf(this.getCharacteristics().getWill());
+	}
+
+	@Override
+	public String getAgilityForDisplay() {
+		return String.valueOf(this.getCharacteristics().getAgility());
+	}
+
+	@Override
+	public String getMovementForDisplay() {
+		return String.valueOf(this.getCharacteristics().getMovement());
+	}
+
+	@Override
+	public String getCurrentJobForDisplay() {
+		return this.getCurrentJob().getName();
+	}
+
+	@Override
+	public String getCurrentJobJobPointsForDisplay() {
+		return String.valueOf(this.getCurrentJob().getJobPoints());
 	}
 }

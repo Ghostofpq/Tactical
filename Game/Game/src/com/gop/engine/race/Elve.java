@@ -6,7 +6,7 @@ public class Elve extends T_Race {
 	
 	private static final long serialVersionUID = -6963245902545834866L;
 
-	private final String ELVE_NAME = "Human";
+	private final String ELVE_NAME = "Elve";
 	private final String ELVE_DESCRIPTION = "blablablabla ELVEZZZZ!!";
 
 	private final int ELVE_BASE_STRENGTH = 8;
