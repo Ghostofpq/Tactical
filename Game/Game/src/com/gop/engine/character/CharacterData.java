@@ -253,7 +253,7 @@ public class CharacterData implements Serializable, ICharacterDescriptor {
 
 	@Override
 	public String getPathForPortrait() {
-		return "C:/Users/vmpx4526/Desktop/Perso/Tactical/Game/Game/images/SquireMale.png";
+		return "./images/SquireMale.png";
 	}
 
 	@Override

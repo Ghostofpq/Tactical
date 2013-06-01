@@ -28,13 +28,12 @@ public class MainMenu extends JFrame {
 	}
 
 	public boolean createPlayer(String playerName) throws IOException {
-		File gameFile = new File("C:/Users/vmpx4526/AppData/Roaming/TOS/"
-				+ playerName);
+		File gameFile = new File("./saves/" + playerName);
 		return gameFile.createNewFile();
 	}
 
 	public void checkFolderForPlayers() throws IOException {
-		File gameFile = new File("C:/Users/vmpx4526/AppData/Roaming/TOS");
+		File gameFile = new File("./saves/");
 		if (!gameFile.exists()) {
 			gameFile.mkdir();
 		} else {

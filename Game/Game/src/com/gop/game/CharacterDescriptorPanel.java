@@ -56,6 +56,23 @@ public class CharacterDescriptorPanel extends JPanel {
 	private JLabel labelPortrait;
 	private BufferedImage portrait;
 
+	private JPanel panelCharacteristics;
+	private JLabel labelStrength;
+	private JLabel labelEndurance;
+	private JLabel labelIntelligence;
+	private JLabel labelWill;
+	private JLabel labelAgility;
+	private JLabel labelMovement;
+
+	private JLabel labelStrengthValue;
+	private JLabel labelEnduranceValue;
+	private JLabel labelIntelligenceValue;
+	private JLabel labelWillValue;
+	private JLabel labelAgilityValue;
+	private JLabel labelMovementValue;
+
+	private JPanel panelGlobalDescriptionAndChars;
+
 	private final int GLOBAL_DESCRIPTION_PANEL_WIDTH = 400;
 	private final int GLOBAL_DESCRIPTION_PANEL_HEIGTH = 300;
 
@@ -66,6 +83,7 @@ public class CharacterDescriptorPanel extends JPanel {
 		createElements();
 		preparePanelGlobalDescription();
 		preparePanelPortrait();
+		preparePanelGlobalDescriptionAndChars();
 
 		this.setLayout(new GridBagLayout());
 		this.setBorder(BorderFactory.createEtchedBorder());
@@ -75,7 +93,7 @@ public class CharacterDescriptorPanel extends JPanel {
 		c.fill = GridBagConstraints.VERTICAL;
 		this.add(panelPortrait, c);
 		c.gridwidth = GridBagConstraints.REMAINDER;
-		this.add(panelGlobalDescription, c);
+		this.add(panelGlobalDescriptionAndChars, c);
 	}
 
 	private void createElements() throws IOException {
@@ -94,13 +112,27 @@ public class CharacterDescriptorPanel extends JPanel {
 		panelHPMPAndXP = new JPanel();
 
 		panelGlobalDescription = new JPanel();
-
+		panelGlobalDescriptionAndChars = new JPanel();
 		panelJob = new JPanel();
 		labelCurrentJob = new JLabel();
 		labelCurrentJobJobPoints = new JLabel();
 
 		panelPortrait = new JPanel();
 		labelPortrait = new JLabel();
+
+		panelCharacteristics = new JPanel();
+		labelStrength = new JLabel();
+		labelEndurance = new JLabel();
+		labelIntelligence = new JLabel();
+		labelWill = new JLabel();
+		labelAgility = new JLabel();
+		labelMovement = new JLabel();
+		labelStrengthValue = new JLabel();
+		labelEnduranceValue = new JLabel();
+		labelIntelligenceValue = new JLabel();
+		labelWillValue = new JLabel();
+		labelAgilityValue = new JLabel();
+		labelMovementValue = new JLabel();
 	}
 
 	private void preparePanelIdentity() {
@@ -169,7 +201,6 @@ public class CharacterDescriptorPanel extends JPanel {
 
 	private void preparePanelGlobalDescription() {
 		panelGlobalDescription.setLayout(new GridBagLayout());
-		panelGlobalDescription.setBorder(BorderFactory.createEtchedBorder());
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = GridBagConstraints.REMAINDER;
@@ -183,7 +214,24 @@ public class CharacterDescriptorPanel extends JPanel {
 		panelGlobalDescription.add(panelIdentity, c);
 		panelGlobalDescription.add(panelHPMPAndXP, c);
 		panelGlobalDescription.add(panelJob, c);
+	}
 
+	private void preparePanelGlobalDescriptionAndChars() {
+		panelGlobalDescriptionAndChars.setLayout(new GridBagLayout());
+		panelGlobalDescriptionAndChars.setBorder(BorderFactory
+				.createEtchedBorder());
+
+		preparePanelGlobalDescription();
+		preparePanelCharacteristics();
+
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
+
+		panelGlobalDescriptionAndChars.add(panelGlobalDescription, c);
+		c.fill = GridBagConstraints.VERTICAL;
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		c.ipadx = 50;
+		panelGlobalDescriptionAndChars.add(panelCharacteristics, c);
 	}
 
 	private void preparePanelPortrait() throws IOException {
@@ -194,6 +242,41 @@ public class CharacterDescriptorPanel extends JPanel {
 		labelPortrait = new JLabel(new ImageIcon(portrait));
 
 		panelPortrait.add(labelPortrait);
+	}
+
+	private void preparePanelCharacteristics() {
+		panelCharacteristics.setLayout(new GridLayout(6, 2));
+		panelCharacteristics.setBorder(BorderFactory
+				.createTitledBorder("Characs :"));
+
+		labelStrength.setText("S : ");
+		labelStrengthValue.setText(characterDescriptor.getStrenghtForDisplay());
+		labelEndurance.setText("E :  ");
+		labelEnduranceValue.setText(characterDescriptor
+				.getEnduranceForDisplay());
+
+		labelIntelligence.setText("I :  ");
+		labelIntelligenceValue.setText(characterDescriptor
+				.getIntelligenceForDisplay());
+		labelWill.setText("W :  ");
+		labelWillValue.setText(characterDescriptor.getWillForDisplay());
+		labelAgility.setText("A :  ");
+		labelAgilityValue.setText(characterDescriptor.getAgilityForDisplay());
+		labelMovement.setText("M :  ");
+		labelMovementValue.setText(characterDescriptor.getMovementForDisplay());
+
+		panelCharacteristics.add(labelStrength);
+		panelCharacteristics.add(labelStrengthValue);
+		panelCharacteristics.add(labelEndurance);
+		panelCharacteristics.add(labelEnduranceValue);
+		panelCharacteristics.add(labelIntelligence);
+		panelCharacteristics.add(labelIntelligenceValue);
+		panelCharacteristics.add(labelWill);
+		panelCharacteristics.add(labelWillValue);
+		panelCharacteristics.add(labelAgility);
+		panelCharacteristics.add(labelAgilityValue);
+		panelCharacteristics.add(labelMovement);
+		panelCharacteristics.add(labelMovementValue);
 	}
 
 	public static void main(String[] argv) throws IOException,
@@ -209,13 +292,13 @@ public class CharacterDescriptorPanel extends JPanel {
 		UIManager.setLookAndFeel(UIManager
 				.getCrossPlatformLookAndFeelClassName());
 		JFrame frame = new JFrame();
-		frame.setSize(600, 800);
+		frame.setSize(700, 600);
 		frame.setTitle("CharacterDescriptorPanel Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
 		JPanel testpanel = new JPanel();
-		testpanel.setLayout(new GridLayout(4, 1));
+		testpanel.setLayout(new GridLayout(3, 1));
 
 		CharacterDescriptorPanel characterDescriptorPanel1 = new CharacterDescriptorPanel(
 				nc1);
@@ -223,13 +306,10 @@ public class CharacterDescriptorPanel extends JPanel {
 				nc2);
 		CharacterDescriptorPanel characterDescriptorPanel3 = new CharacterDescriptorPanel(
 				nc3);
-		CharacterDescriptorPanel characterDescriptorPanel4 = new CharacterDescriptorPanel(
-				nc1);
 
 		testpanel.add(characterDescriptorPanel1);
 		testpanel.add(characterDescriptorPanel2);
 		testpanel.add(characterDescriptorPanel3);
-		testpanel.add(characterDescriptorPanel4);
 
 		frame.add(testpanel);
 		frame.setVisible(true);
