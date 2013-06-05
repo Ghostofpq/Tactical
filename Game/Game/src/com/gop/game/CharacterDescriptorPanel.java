@@ -254,7 +254,6 @@ public class CharacterDescriptorPanel extends JPanel {
 		labelEndurance.setText("E :  ");
 		labelEnduranceValue.setText(characterDescriptor
 				.getEnduranceForDisplay());
-
 		labelIntelligence.setText("I :  ");
 		labelIntelligenceValue.setText(characterDescriptor
 				.getIntelligenceForDisplay());
