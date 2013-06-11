@@ -1,20 +1,18 @@
 package com.gop.game;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class MainMenu extends JFrame {
 
 	private static final long serialVersionUID = -3240976908707553886L;
-
-	List<String> players = new ArrayList<String>();
+	private GlobalGameData globalGameData;
+	private PlayerSelector playerSelector;
+	private JPanel testouille;
 
 	public MainMenu() throws IOException {
 		this.setSize(1000, 800);
@@ -22,27 +20,19 @@ public class MainMenu extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 
-		this.checkFolderForPlayers();
-
+		globalGameData = new GlobalGameData();
+		playerSelector = new PlayerSelector(this, globalGameData);
+		this.add(playerSelector);
 		this.setVisible(true);
 	}
 
-	public boolean createPlayer(String playerName) throws IOException {
-		File gameFile = new File("./saves/" + playerName);
-		return gameFile.createNewFile();
-	}
-
-	public void checkFolderForPlayers() throws IOException {
-		File gameFile = new File("./saves/");
-		if (!gameFile.exists()) {
-			gameFile.mkdir();
-		} else {
-			players = Arrays.asList(gameFile.list());
-		}
+	public void closePlayerSelectionPanel() {
+		this.remove(playerSelector);
+		testouille.setToolTipText(globalGameData.getPlayer().getName());
+		this.add(testouille);
 	}
 
 	public static void main(String[] argv) throws IOException {
-
 		try {
 			// Set cross-platform Java L&F (also called "Metal")
 			UIManager.setLookAndFeel(UIManager
